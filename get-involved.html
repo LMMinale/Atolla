@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get Involved — Atolla</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;600;700&family=Barlow:wght@300;400;500&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: 'Barlow', system-ui, sans-serif;
+      font-weight: 400;
+      color: #000000;
+      background: #ffffff;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    .label-upper {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #000000;
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .label-upper--white { color: #ffffff; }
+
+    .section-heading {
+      font-family: 'Archivo Narrow', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.1;
+      color: #000000;
+    }
+
+    .section-heading--white { color: #ffffff; }
+    .section-heading--sm { font-size: clamp(1.6rem, 3vw, 2.4rem); }
+
+    hr.divider { border: none; border-top: 1px solid #000000; margin: 0; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+    .section { padding: 7rem 0; }
+    .section--dark { background: #000000; color: #ffffff; }
+    .section--light-grey { background: #f5f5f5; }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .nav.scrolled { background: #ffffff; border-bottom-color: #000000; }
+
+    .nav__inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav__logo {
+      font-family: 'Archivo Narrow', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.02em;
+      color: #ffffff;
+      transition: color 0.25s;
+    }
+
+    .nav.scrolled .nav__logo { color: #000000; }
+
+    .nav__links { display: flex; align-items: center; gap: 2rem; }
+
+    .nav__links a {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      transition: color 0.2s;
+    }
+
+    .nav__links a:hover { color: #ffffff; }
+    .nav.scrolled .nav__links a { color: #000000; }
+    .nav.scrolled .nav__links a:hover { color: #0e7c7b; }
+
+    .nav__links a.btn-nav-donate {
+      background: #e8715a;
+      color: #ffffff !important;
+      padding: 0.45rem 1.1rem;
+      font-size: 0.8rem;
+    }
+
+    .nav__links a.btn-nav-donate:hover { background: #cf5640; }
+
+    .nav__hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .nav__hamburger span {
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: #ffffff;
+      transition: background 0.25s, transform 0.25s, opacity 0.25s;
+    }
+
+    .nav.scrolled .nav__hamburger span { background: #000000; }
+    .nav__hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav__hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav__hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .nav__mobile {
+      display: none;
+      position: fixed;
+      top: 64px; left: 0; right: 0;
+      background: #ffffff;
+      border-bottom: 1px solid #000000;
+      z-index: 999;
+      padding: 1.5rem 40px 2rem;
+    }
+
+    .nav__mobile.open { display: flex; flex-direction: column; gap: 1rem; }
+
+    .nav__mobile a {
+      font-family: 'Barlow', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #000000;
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 0.75rem;
+    }
+
+    .nav__mobile a:last-child { border-bottom: none; }
+
+    /* ── HERO ── */
+    .hero {
+      height: 100vh;
+      min-height: 600px;
+      background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.72)),
+        url('images/Edges of Earth_Adam Moore_Hawaii_Oahu_Sonia J. Rowley_Dive-6401_USE.jpg');
+      background-size: cover;
+      background-position: center 30%;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 8vh;
+    }
+
+    .hero__content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .hero__text { width: 52%; }
+
+    .hero__label {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      display: block;
+      margin-bottom: 1.1rem;
+    }
+
+    .hero__h1 {
+      font-family: 'Archivo Narrow', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 1.0;
+      color: #ffffff;
+      margin-bottom: 1rem;
+    }
+
+    .hero__subline {
+      font-family: 'Barlow', sans-serif;
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.8);
+      letter-spacing: 0.04em;
+      margin-bottom: 2.2rem;
+    }
+
+    .hero__btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.75rem 1.8rem;
+      display: inline-block;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+
+    .btn--teal { background: #0e7c7b; color: #ffffff; border: 1px solid #0e7c7b; }
+    .btn--teal:hover { background: #0a5e5d; border-color: #0a5e5d; }
+    .btn--coral { background: #e8715a; color: #ffffff; border: 1px solid #e8715a; }
+    .btn--coral:hover { background: #cf5640; border-color: #cf5640; }
+    .btn--outline-white { background: transparent; color: #ffffff; border: 1px solid #ffffff; }
+    .btn--outline-white:hover { background: rgba(255,255,255,0.12); }
+    .btn--outline-black { background: transparent; color: #000000; border: 1px solid #000000; }
+    .btn--outline-black:hover { background: #000000; color: #ffffff; }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #0e7c7b;
+      flex-shrink: 0;
+    }
+
+    /* ── DR ROWLEY BIO ── */
+    .bio__grid {
+      display: grid;
+      grid-template-columns: 45fr 55fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .bio__portrait {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: #f0f0f0;
+      border: 1px solid #000000;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bio__portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .bio__portrait-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #111111;
+      font-family: 'Archivo Narrow', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      color: rgba(255,255,255,0.15);
+      letter-spacing: 0.04em;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .bio__text {
+      font-family: 'Barlow', sans-serif;
+      font-size: 1.05rem;
+      color: #222222;
+      line-height: 1.75;
+      margin-top: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .bio__awards { display: flex; flex-direction: column; gap: 0.75rem; }
+
+    .bio__award {
+      border: 1px solid #000000;
+      padding: 0.9rem 1.1rem;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    /* ── TIMELINE ── */
+    .timeline { border-top: 1px solid #000000; }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 2.5rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid #000000;
+      align-items: start;
+    }
+
+    .timeline-item__date {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #0e7c7b;
+      padding-top: 0.2rem;
+    }
+
+    .timeline-item__title {
+      font-family: 'Archivo Narrow', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #000000;
+      margin-bottom: 0.6rem;
+    }
+
+    .timeline-item__desc {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.92rem;
+      color: #444444;
+      line-height: 1.7;
+    }
+
+    .timeline-item__tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.9rem; }
+
+    .tag-dark {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid #cccccc;
+      padding: 0.2rem 0.65rem;
+      color: #555555;
+    }
+
+    /* ── WAYS TO HELP — 3 col ── */
+    .ways__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-top: 1px solid #000000;
+    }
+
+    .way-col {
+      padding: 3rem 2rem 3rem 0;
+      border-right: 1px solid #000000;
+    }
+
+    .way-col:last-child { border-right: none; padding-right: 0; }
+    .way-col:not(:first-child) { padding-left: 2rem; }
+
+    .way-col__number {
+      font-family: 'Archivo Narrow', sans-serif;
+      font-weight: 700;
+      font-size: 2.8rem;
+      color: #e0e0e0;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .way-col__title {
+      font-family: 'Archivo Narrow', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: 0.02em;
+      color: #000000;
+      margin-bottom: 1rem;
+    }
+
+    .way-col__desc {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.92rem;
+      color: #444444;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .way-col__link {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #0e7c7b;
+      border-bottom: 1px solid #0e7c7b;
+      padding-bottom: 0.15rem;
+      transition: color 0.2s, border-color 0.2s;
+      display: inline-block;
+    }
+
+    .way-col__link:hover { color: #000000; border-color: #000000; }
+
+    /* ── DONATE SECTION ── */
+    .donate-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 50vh;
+      border-top: 1px solid #000000;
+    }
+
+    .donate-split__text {
+      padding: 5rem 4rem 5rem 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .donate-split__text p {
+      font-family: 'Barlow', sans-serif;
+      font-size: 1rem;
+      color: #444444;
+      line-height: 1.7;
+      max-width: 440px;
+    }
+
+    .donate-split__visual {
+      background: #000000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem;
+      gap: 2rem;
+      border-left: 1px solid #000000;
+    }
+
+    .donate-amount {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      width: 100%;
+      background: rgba(255,255,255,0.15);
+    }
+
+    .amount-cell {
+      background: #000000;
+      padding: 1.8rem 1.5rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .amount-cell:hover { background: #111111; }
+
+    .amount-cell__value {
+      font-family: 'Archivo Narrow', sans-serif;
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: #ffffff;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .amount-cell__label {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #000000;
+      color: #ffffff;
+      padding: 3rem 0;
+    }
+
+    .footer__inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer__logo {
+      font-family: 'Archivo Narrow', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #ffffff;
+    }
+
+    .footer__links { display: flex; gap: 2rem; }
+
+    .footer__links a {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      transition: color 0.2s;
+    }
+
+    .footer__links a:hover { color: #ffffff; }
+    .footer__copy { font-family: 'Barlow', sans-serif; font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .container { padding: 0 24px; }
+      .nav__inner { padding: 0 24px; }
+      .footer__inner { padding: 0 24px; }
+      .nav__links { display: none; }
+      .nav__hamburger { display: flex; }
+      .nav__mobile { padding: 1.5rem 24px 2rem; }
+      .hero__text { width: 75%; }
+      .bio__grid { grid-template-columns: 1fr; gap: 3rem; }
+      .ways__grid { grid-template-columns: 1fr; border-top: none; }
+      .way-col { border-right: none; border-top: 1px solid #000; padding: 2.5rem 0; }
+      .way-col:not(:first-child) { padding-left: 0; }
+      .donate-split { grid-template-columns: 1fr; }
+      .donate-split__text { padding: 4rem 24px 3rem; }
+      .donate-split__visual { border-left: none; border-top: 1px solid #333; padding: 3rem 24px; }
+      .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 0 20px; }
+      .nav__inner { padding: 0 20px; }
+      .footer__inner { padding: 0 20px; }
+      .section { padding: 4.5rem 0; }
+      .hero__text { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="mainNav">
+    <div class="nav__inner">
+      <a class="nav__logo" href="index.html">Atolla</a>
+      <div class="nav__links">
+        <a href="index.html">Home</a>
+        <a href="get-involved.html">Get Involved</a>
+        <a href="data.html">The Data</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="nav__mobile" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="get-involved.html">Get Involved</a>
+    <a href="data.html">The Data</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero__content">
+      <div class="hero__text">
+        <span class="hero__label">The Rowley Expedition</span>
+        <h1 class="hero__h1">Get<br>Involved</h1>
+        <p class="hero__subline">Dr Sarah Rowley &middot; Mesophotic Research Initiative &middot; 2024&ndash;2026</p>
+        <div class="hero__btns">
+          <a href="#expedition" class="btn btn--teal">The Expedition</a>
+          <a href="mailto:contact@atolla.org" class="btn btn--outline-white">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DR ROWLEY BIO -->
+  <section class="section" id="about">
+    <div class="container">
+      <hr class="divider" style="margin-bottom: 3.5rem;">
+      <div class="bio__grid">
+        <div>
+          <div class="bio__portrait">
+            <img src="images/4_Sonia_Pakin_2015.jpg" alt="Dr Sonia J. Rowley" />
+          </div>
+        </div>
+        <div>
+          <span class="label-upper">Lead Researcher</span>
+          <h2 class="section-heading">Dr Sarah<br>Rowley</h2>
+          <p class="bio__text">
+            Evolutionary marine biologist and CCR diving pioneer with over 40 years of diving experience. Dr Rowley specialises in gorgonian octocoral taxonomy and mesophotic reef ecology, working at depths of 50&ndash;200m where few researchers have ventured. Her work on new species discovery and deep reef conservation spans the Indo-Pacific.
+          </p>
+          <p class="bio__text" style="margin-top: -1rem;">
+            Dr Rowley leads the Atolla Research Initiative, based at the Scripps Institution of Oceanography. She is also Research Faculty at SOEST University of Hawaii, Scientific Associate at the Natural History Museum London, and Research Associate at the Smithsonian Institution.
+          </p>
+          <div class="bio__awards">
+            <div class="bio__award">
+              Scripps Institution of Oceanography — Lead Research Programme, 2024&ndash;2026
+            </div>
+            <div class="bio__award">
+              CCR Diving Programme &middot; Mesophotic Zone 30&ndash;200m
+            </div>
+            <div class="bio__award">
+              Nature Communications — Manuscript Under Review, 2026
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPEDITION TIMELINE -->
+  <section class="section section--light-grey" id="expedition">
+    <div class="container">
+      <hr class="divider" style="margin-bottom: 3rem;">
+      <span class="label-upper">Pacific Ocean &mdash; 2024 to 2026</span>
+      <h2 class="section-heading" style="margin-bottom: 3.5rem;">Expedition<br>Timeline</h2>
+
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-item__date">March 2024</div>
+          <div>
+            <div class="timeline-item__title">Inaugural Dive, Station Alpha</div>
+            <p class="timeline-item__desc">First ROV deployment off the coast of Monterey Bay, reaching 650m. Documented 14 distinct Atolla specimens exhibiting alarm bioluminescence in response to predator simulation. First high-definition video record of the "burglar alarm" display at depth.</p>
+            <div class="timeline-item__tags">
+              <span class="tag-dark">Monterey Bay</span>
+              <span class="tag-dark">650m</span>
+              <span class="tag-dark">CCR</span>
+              <span class="tag-dark">14 Specimens</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-item__date">August 2024</div>
+          <div>
+            <div class="timeline-item__title">Deep Pacific Survey</div>
+            <p class="timeline-item__desc">Return expedition to Pohnpei and surrounding atolls. Extended CCR diving programme to 200m with specimen collection, phylogenomic sampling, and habitat photography across 12 study sites.</p>
+            <div class="timeline-item__tags">
+              <span class="tag-dark">CCR Diving</span>
+              <span class="tag-dark">Pohnpei</span>
+              <span class="tag-dark">Time-Series</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-item__date">January 2025</div>
+          <div>
+            <div class="timeline-item__title">Species Identification Campaign</div>
+            <p class="timeline-item__desc">Collaboration with the Natural History Museum London and Smithsonian Institution to formally describe new gorgonian species collected during field expeditions. eDNA sampling initiated across 12 study sites to complement physical specimen data.</p>
+            <div class="timeline-item__tags">
+              <span class="tag-dark">NHM London</span>
+              <span class="tag-dark">MBARI</span>
+              <span class="tag-dark">6 Phenotypes</span>
+              <span class="tag-dark">eDNA</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-item__date">June 2025</div>
+          <div>
+            <div class="timeline-item__title">Timor-Leste Exploration</div>
+            <p class="timeline-item__desc">First expedition to breach the 1,000m threshold with a new pressure-rated ROV. Unprecedented observations of bioluminescent displays at bathypelagic depths. Data currently under peer review for Nature Communications.</p>
+            <div class="timeline-item__tags">
+              <span class="tag-dark">200m</span>
+              <span class="tag-dark">Mesophotic</span>
+              <span class="tag-dark">Under Review</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-item__date">2026 — Ongoing</div>
+          <div>
+            <div class="timeline-item__title">Open Data Initiative &amp; 2026 Season</div>
+            <p class="timeline-item__desc">Full dataset release to the global research community via open access repositories. Citizen science programme to assist with specimen classification from expedition footage and photography. Continued field expeditions to Pohnpei and Timor-Leste through 2027.</p>
+            <div class="timeline-item__tags">
+              <span class="tag-dark">Open Data</span>
+              <span class="tag-dark">Citizen Science</span>
+              <span class="tag-dark">Crowdfunding</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WAYS TO GET INVOLVED -->
+  <section class="section" id="ways">
+    <div class="container">
+      <hr class="divider" style="margin-bottom: 3rem;">
+      <span class="label-upper">How to Help</span>
+      <h2 class="section-heading" style="margin-bottom: 3.5rem;">Get Involved</h2>
+
+      <div class="ways__grid">
+
+        <div class="way-col">
+          <div class="way-col__number">01</div>
+          <div class="way-col__title">Citizen Science</div>
+          <p class="way-col__desc">Help classify bioluminescence events from our expedition footage through the Zooniverse platform. No scientific background required — just curiosity and careful eyes. Each classification directly advances our understanding of deep-sea signalling.</p>
+          <a href="mailto:contact@atolla.org" class="way-col__link">Join the programme &rarr;</a>
+        </div>
+
+        <div class="way-col">
+          <div class="way-col__number">02</div>
+          <div class="way-col__title">Fund a Dive</div>
+          <p class="way-col__desc">Each expedition dive day carries real costs in equipment, logistics, and crew. Contributions of any size directly extend the number of survey days we can complete in 2026. Supporters receive field dispatches and early access to findings.</p>
+          <a href="mailto:contact@atolla.org" class="way-col__link">Support the expedition &rarr;</a>
+        </div>
+
+        <div class="way-col">
+          <div class="way-col__number">03</div>
+          <div class="way-col__title">Research Partnership</div>
+          <p class="way-col__desc">Institutions and companies working in marine science, climate research, or ocean technology are invited to join as formal research partners. Partnerships include co-authorship opportunities and access to the full expedition dataset.</p>
+          <a href="mailto:contact@atolla.org" class="way-col__link">Partner with us &rarr;</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer__inner">
+      <div class="footer__logo">Atolla Research Initiative</div>
+      <div class="footer__links">
+        <a href="index.html">Home</a>
+        <a href="data.html">The Data</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer__copy">&copy; 2026</div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('mainNav');
+    function updateNav() { nav.classList.toggle('scrolled', window.scrollY > 60); }
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
+
+</body>
+</html>

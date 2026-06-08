@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Data — Atolla</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;600;700&family=Barlow:wght@300;400;500&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: 'Barlow', system-ui, sans-serif;
+      font-weight: 400;
+      color: #000000;
+      background: #ffffff;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    .label-upper {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #000000;
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .label-upper--white { color: #ffffff; }
+
+    .section-heading {
+      font-family: 'Archivo Narrow', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.1;
+      color: #000000;
+    }
+
+    .section-heading--white { color: #ffffff; }
+    .section-heading--sm { font-size: clamp(1.6rem, 3vw, 2.4rem); }
+
+    hr.divider { border: none; border-top: 1px solid #000000; margin: 0; }
+    hr.divider--white { border-top-color: rgba(255,255,255,0.2); }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+    .section { padding: 7rem 0; }
+    .section--dark { background: #000000; color: #ffffff; }
+    .section--light-grey { background: #f5f5f5; }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #0e7c7b;
+      flex-shrink: 0;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .nav.scrolled { background: #ffffff; border-bottom-color: #000000; }
+
+    .nav__inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav__logo {
+      font-family: 'Archivo Narrow', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.02em;
+      color: #ffffff;
+      transition: color 0.25s;
+    }
+
+    .nav.scrolled .nav__logo { color: #000000; }
+
+    .nav__links { display: flex; align-items: center; gap: 2rem; }
+
+    .nav__links a {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      transition: color 0.2s;
+    }
+
+    .nav__links a:hover { color: #ffffff; }
+    .nav.scrolled .nav__links a { color: #000000; }
+    .nav.scrolled .nav__links a:hover { color: #0e7c7b; }
+
+    .nav__links a.btn-nav-donate {
+      background: #e8715a;
+      color: #ffffff !important;
+      padding: 0.45rem 1.1rem;
+      font-size: 0.8rem;
+    }
+
+    .nav__links a.btn-nav-donate:hover { background: #cf5640; }
+
+    .nav__hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .nav__hamburger span {
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: #ffffff;
+      transition: background 0.25s, transform 0.25s, opacity 0.25s;
+    }
+
+    .nav.scrolled .nav__hamburger span { background: #000000; }
+    .nav__hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav__hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav__hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .nav__mobile {
+      display: none;
+      position: fixed;
+      top: 64px; left: 0; right: 0;
+      background: #ffffff;
+      border-bottom: 1px solid #000000;
+      z-index: 999;
+      padding: 1.5rem 40px 2rem;
+    }
+
+    .nav__mobile.open { display: flex; flex-direction: column; gap: 1rem; }
+
+    .nav__mobile a {
+      font-family: 'Barlow', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #000000;
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 0.75rem;
+    }
+
+    .nav__mobile a:last-child { border-bottom: none; }
+
+    /* ── HERO ── */
+    .hero {
+      height: 100vh;
+      min-height: 600px;
+      background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.72)),
+        url('images/gorgonian-mesophotic-biodiversity-turbo-soniajrowley-sjrllc-60m-tangga-indonesia-lombok-rebreather-ccr.jpg');
+      background-size: cover;
+      background-position: center 60%;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 8vh;
+    }
+
+    .hero__content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .hero__text { width: 52%; }
+
+    .hero__label {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      display: block;
+      margin-bottom: 1.1rem;
+    }
+
+    .hero__h1 {
+      font-family: 'Archivo Narrow', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 1.0;
+      color: #ffffff;
+      margin-bottom: 1rem;
+    }
+
+    .hero__subline {
+      font-family: 'Barlow', sans-serif;
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.8);
+      letter-spacing: 0.04em;
+      margin-bottom: 2.2rem;
+    }
+
+    .hero__btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.75rem 1.8rem;
+      display: inline-block;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+
+    .btn--teal { background: #0e7c7b; color: #ffffff; border: 1px solid #0e7c7b; }
+    .btn--teal:hover { background: #0a5e5d; border-color: #0a5e5d; }
+    .btn--coral { background: #e8715a; color: #ffffff; border: 1px solid #e8715a; }
+    .btn--coral:hover { background: #cf5640; border-color: #cf5640; }
+    .btn--outline-white { background: transparent; color: #ffffff; border: 1px solid #ffffff; }
+    .btn--outline-white:hover { background: rgba(255,255,255,0.12); }
+    .btn--outline-black { background: transparent; color: #000000; border: 1px solid #000000; }
+    .btn--outline-black:hover { background: #000000; color: #ffffff; }
+
+    /* ── STATS GRID ── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid #000000;
+      margin-top: 3rem;
+    }
+
+    .stat-cell { padding: 1.8rem 1.6rem; border-right: 1px solid #000000; }
+    .stat-cell:last-child { border-right: none; }
+
+    .stat-cell__number {
+      font-family: 'Archivo Narrow', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      line-height: 1;
+      color: #000000;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-cell__label {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #555555;
+    }
+
+    /* ── ABOUT TEXT ── */
+    .intro__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .intro__body {
+      font-family: 'Barlow', sans-serif;
+      font-size: 1.05rem;
+      color: #222222;
+      line-height: 1.75;
+      margin-top: 1.5rem;
+    }
+
+    .intro__body + .intro__body { margin-top: 1.2rem; }
+
+    /* ── DEPTH CHART — dark section ── */
+    .chart-section {
+      background: #000000;
+      padding: 7rem 0;
+      color: #ffffff;
+    }
+
+    .depth-chart {
+      margin-top: 3rem;
+      display: flex;
+      gap: 3px;
+      align-items: flex-end;
+      height: 220px;
+      border-left: 1px solid rgba(255,255,255,0.15);
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      padding: 0 0 16px 16px;
+    }
+
+    .bar-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .bar {
+      width: 100%;
+      background: #0e7c7b;
+      border-radius: 1px 1px 0 0;
+      transition: opacity 0.2s;
+      min-height: 4px;
+    }
+
+    .bar-group:hover .bar { opacity: 0.7; }
+
+    .bar-label {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    /* ── DATA CATEGORIES — rows ── */
+    .categories { border-top: 1px solid #000000; }
+
+    .category-row {
+      display: grid;
+      grid-template-columns: 60px 220px 1fr 140px;
+      gap: 2rem;
+      padding: 2.2rem 0;
+      border-bottom: 1px solid #000000;
+      align-items: center;
+      transition: background 0.2s;
+    }
+
+    .category-row:hover {
+      background: #f9f9f9;
+      margin: 0 -40px;
+      padding: 2.2rem 40px;
+    }
+
+    .cat-num {
+      font-family: 'Archivo Narrow', sans-serif;
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: #e0e0e0;
+      line-height: 1;
+    }
+
+    .cat-type {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #0e7c7b;
+      margin-bottom: 0.25rem;
+    }
+
+    .cat-name {
+      font-family: 'Archivo Narrow', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #000000;
+    }
+
+    .cat-desc {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.88rem;
+      color: #555555;
+      line-height: 1.6;
+    }
+
+    .cat-count {
+      font-family: 'Archivo Narrow', sans-serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #000000;
+      text-align: right;
+    }
+
+    .cat-count span {
+      display: block;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #aaaaaa;
+      margin-top: 0.2rem;
+    }
+
+    /* ── CTAB panels (same as index) ── */
+    .ctab-nav {
+      display: flex;
+      border-bottom: 1px solid #000000;
+      margin-bottom: 3.5rem;
+    }
+
+    .ctab-btn {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.9rem 1.6rem;
+      border: none;
+      border-bottom: 2px solid transparent;
+      background: none;
+      cursor: pointer;
+      color: #999999;
+      transition: color 0.2s, border-color 0.2s;
+      margin-bottom: -1px;
+      white-space: nowrap;
+    }
+
+    .ctab-btn:first-child { padding-left: 0; }
+    .ctab-btn.active { color: #000000; border-bottom-color: #000000; }
+    .ctab-btn:hover { color: #000000; }
+    .ctab-panel { display: none; }
+    .ctab-panel.active { display: block; }
+
+    /* ── RESEARCH COLS ── */
+    .research__cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-top: 1px solid #000000;
+    }
+
+    .research-col {
+      padding: 2.5rem 2rem 2.5rem 0;
+      border-right: 1px solid #000000;
+    }
+
+    .research-col:last-child { border-right: none; padding-right: 0; }
+    .research-col:not(:first-child) { padding-left: 2rem; }
+
+    .research-col__heading {
+      font-family: 'Archivo Narrow', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #000000;
+      margin-bottom: 1.25rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #000000;
+    }
+
+    .research-col__list li {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.55rem 0;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.9rem;
+      color: #222222;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .research-col__list li:last-child { border-bottom: none; }
+
+    /* ── OPEN DATA SPLIT ── */
+    .open-data-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid #000000;
+      min-height: 50vh;
+    }
+
+    .open-data-split__text {
+      padding: 5rem 4rem 5rem 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .open-data-split__text p {
+      font-family: 'Barlow', sans-serif;
+      font-size: 1rem;
+      color: #444444;
+      line-height: 1.7;
+      max-width: 440px;
+    }
+
+    .open-data-split__dark {
+      background: #000000;
+      padding: 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2rem;
+      border-left: 1px solid #000000;
+    }
+
+    .dataset-card {
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 1.5rem;
+    }
+
+    .dataset-card__label {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #0e7c7b;
+      margin-bottom: 0.5rem;
+    }
+
+    .dataset-card__name {
+      font-family: 'Archivo Narrow', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #ffffff;
+      margin-bottom: 0.4rem;
+    }
+
+    .dataset-card__meta {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #000000;
+      color: #ffffff;
+      padding: 3rem 0;
+    }
+
+    .footer__inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer__logo {
+      font-family: 'Archivo Narrow', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #ffffff;
+    }
+
+    .footer__links { display: flex; gap: 2rem; }
+
+    .footer__links a {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      transition: color 0.2s;
+    }
+
+    .footer__links a:hover { color: #ffffff; }
+    .footer__copy { font-family: 'Barlow', sans-serif; font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .container { padding: 0 24px; }
+      .nav__inner { padding: 0 24px; }
+      .footer__inner { padding: 0 24px; }
+      .nav__links { display: none; }
+      .nav__hamburger { display: flex; }
+      .nav__mobile { padding: 1.5rem 24px 2rem; }
+      .hero__text { width: 75%; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-cell:nth-child(2) { border-right: none; }
+      .stat-cell:nth-child(3) { border-right: 1px solid #000; border-top: 1px solid #000; }
+      .stat-cell:nth-child(4) { border-right: none; border-top: 1px solid #000; }
+      .intro__grid { grid-template-columns: 1fr; gap: 2rem; }
+      .category-row { grid-template-columns: 50px 1fr; gap: 1rem; }
+      .category-row .cat-desc,
+      .category-row .cat-count { display: none; }
+      .research__cols { grid-template-columns: 1fr; border-top: none; }
+      .research-col { border-right: none; border-top: 1px solid #000; padding: 2rem 0; }
+      .research-col:not(:first-child) { padding-left: 0; }
+      .open-data-split { grid-template-columns: 1fr; }
+      .open-data-split__text { padding: 4rem 24px 3rem; }
+      .open-data-split__dark { border-left: none; border-top: 1px solid #333; padding: 3rem 24px; }
+      .ctab-nav { overflow-x: auto; }
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 0 20px; }
+      .nav__inner { padding: 0 20px; }
+      .footer__inner { padding: 0 20px; }
+      .section { padding: 4.5rem 0; }
+      .hero__text { width: 100%; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="mainNav">
+    <div class="nav__inner">
+      <a class="nav__logo" href="index.html">Atolla</a>
+      <div class="nav__links">
+        <a href="index.html">Home</a>
+        <a href="get-involved.html">Get Involved</a>
+        <a href="data.html">The Data</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="nav__mobile" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="get-involved.html">Get Involved</a>
+    <a href="data.html">The Data</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero__content">
+      <div class="hero__text">
+        <span class="hero__label">Field Research Dataset 2024&ndash;2026</span>
+        <h1 class="hero__h1">The<br>Data</h1>
+        <p class="hero__subline">312 Specimens &middot; 200m Depth &middot; CCR Diving &middot; New Species</p>
+        <div class="hero__btns">
+          <a href="#dataset" class="btn btn--teal">Request Access</a>
+          <a href="#categories" class="btn btn--outline-white">Browse Data</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS + INTRO -->
+  <section class="section" id="overview">
+    <div class="container">
+      <hr class="divider" style="margin-bottom: 3rem;">
+      <span class="label-upper">Overview</span>
+      <h2 class="section-heading">What the twilight zone<br>tells us</h2>
+
+      <div class="stats-grid">
+        <div class="stat-cell">
+          <span class="stat-cell__number">200m</span>
+          <span class="stat-cell__label">Maximum depth reached</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-cell__number">312</span>
+          <span class="stat-cell__label">Individual specimens logged</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-cell__number">48hrs</span>
+          <span class="stat-cell__label">Continuous footage</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-cell__number">6</span>
+          <span class="stat-cell__label">New behavioural phenotypes</span>
+        </div>
+      </div>
+
+      <div class="intro__grid" style="margin-top: 5rem;">
+        <div>
+          <p class="intro__body">
+            The Atolla dataset documents mesophotic reef ecosystems across the Indo-Pacific twilight zone. Across 18 expedition dives between 2024 and 2026, the team logged gorgonian octocoral communities, candidate new species, and habitat data at depths from 30m to 200m using closed-circuit rebreather (CCR) diving.
+          </p>
+        </div>
+        <div>
+          <p class="intro__body" style="margin-top:0;">
+            All data is collected under a Creative Commons licence and will be made publicly available through the Open Ocean Data Portal in Q2 2026. Researchers seeking early access for peer review or collaboration should contact the team directly.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPTH CHART — dark section -->
+  <section class="chart-section">
+    <div class="container">
+      <hr class="divider--white divider" style="margin-bottom: 3rem;">
+      <span class="label-upper label-upper--white">Sighting Density by Depth Band</span>
+      <h2 class="section-heading section-heading--white section-heading--sm">18 Dives &middot; Mesophotic Zone &middot; 30&ndash;200m</h2>
+      <div class="depth-chart">
+        <div class="bar-group"><div class="bar" style="height:28%;"></div><div class="bar-label">30m</div></div>
+        <div class="bar-group"><div class="bar" style="height:52%;"></div><div class="bar-label">50m</div></div>
+        <div class="bar-group"><div class="bar" style="height:88%;"></div><div class="bar-label">75m</div></div>
+        <div class="bar-group"><div class="bar" style="height:100%;"></div><div class="bar-label">100m</div></div>
+        <div class="bar-group"><div class="bar" style="height:72%;"></div><div class="bar-label">125m</div></div>
+        <div class="bar-group"><div class="bar" style="height:48%;"></div><div class="bar-label">150m</div></div>
+        <div class="bar-group"><div class="bar" style="height:22%;"></div><div class="bar-label">175m</div></div>
+        <div class="bar-group"><div class="bar" style="height:8%;"></div><div class="bar-label">200m</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DATA CATEGORIES -->
+  <section class="section" id="categories">
+    <div class="container">
+      <hr class="divider" style="margin-bottom: 3rem;">
+      <span class="label-upper">What We Collected</span>
+      <h2 class="section-heading" style="margin-bottom: 3.5rem;">Dataset<br>Categories</h2>
+
+      <div class="categories">
+
+        <div class="category-row">
+          <div class="cat-num">01</div>
+          <div>
+            <div class="cat-type">Video</div>
+            <div class="cat-name">Expedition Imagery</div>
+          </div>
+          <div class="cat-desc">High-definition underwater photography and video from CCR dive surveys. Documents gorgonian colonies, habitat structure, and candidate new species at mesophotic depths.</div>
+          <div class="cat-count">2,840 <span>images &amp; clips</span></div>
+        </div>
+
+        <div class="category-row">
+          <div class="cat-num">02</div>
+          <div>
+            <div class="cat-type">eDNA</div>
+            <div class="cat-name">Environmental DNA Samples</div>
+          </div>
+          <div class="cat-desc">Water column filtration at 12 study sites across mesophotic field sites in the Indo-Pacific. Identifies species presence and complements physical specimen records through genetic sequencing.</div>
+          <div class="cat-count">480 <span>water samples</span></div>
+        </div>
+
+        <div class="category-row">
+          <div class="cat-num">03</div>
+          <div>
+            <div class="cat-type">Specimens</div>
+            <div class="cat-name">Gorgonian Collections</div>
+          </div>
+          <div class="cat-desc">Preserved gorgonian specimens collected under permit during CCR dives. Each voucher supports formal species description, molecular analysis, and museum lodgement.</div>
+          <div class="cat-count">312 <span>voucher specimens</span></div>
+        </div>
+
+        <div class="category-row">
+          <div class="cat-num">04</div>
+          <div>
+            <div class="cat-type">Survey</div>
+            <div class="cat-name">Dive Transects</div>
+          </div>
+          <div class="cat-desc">Standardised belt transects and roving diver surveys recording gorgonian density, colony size, and depth distribution. Core method for abundance and diversity assessment.</div>
+          <div class="cat-count">94 <span>survey transects</span></div>
+        </div>
+
+        <div class="category-row">
+          <div class="cat-num">05</div>
+          <div>
+            <div class="cat-type">Environmental</div>
+            <div class="cat-name">Oceanographic Conditions</div>
+          </div>
+          <div class="cat-desc">Temperature, salinity, dissolved oxygen, and visibility logged across all 18 dives. Enables correlation of species distribution with depth and oceanographic conditions at each site.</div>
+          <div class="cat-count">18 <span>complete dive logs</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DATA METHODS — tabbed -->
+  <section class="section section--light-grey">
+    <div class="container">
+      <hr class="divider" style="margin-bottom: 3rem;">
+      <span class="label-upper">Methods &amp; Processing</span>
+      <h2 class="section-heading" style="margin-bottom: 3rem;">Data Collection<br>&amp; Methods</h2>
+
+      <div class="ctab-nav" role="tablist">
+        <button class="ctab-btn active" data-ctab="collection" role="tab">Collection</button>
+        <button class="ctab-btn" data-ctab="processing" role="tab">Processing</button>
+        <button class="ctab-btn" data-ctab="access" role="tab">Access &amp; Licence</button>
+      </div>
+
+      <div class="ctab-panel active" data-ctab-panel="collection">
+        <div class="research__cols">
+          <div class="research-col">
+            <div class="research-col__heading">CCR Diving</div>
+            <ul class="research-col__list">
+              <li><span class="dot"></span>CCR (rebreather) diving to 200m</li>
+              <li><span class="dot"></span>In-situ specimen documentation</li>
+              <li><span class="dot"></span>Phylogenomic sampling</li>
+              <li><span class="dot"></span>4K underwater video</li>
+              <li><span class="dot"></span>GPS dive tracking</li>
+              <li><span class="dot"></span>Environmental data logging</li>
+            </ul>
+          </div>
+          <div class="research-col">
+            <div class="research-col__heading">Field Operations</div>
+            <ul class="research-col__list">
+              <li><span class="dot"></span>Multi-site dive teams</li>
+              <li><span class="dot"></span>Multi-day field operations</li>
+              <li><span class="dot"></span>Specimen collection &amp; curation</li>
+              <li><span class="dot"></span>Habitat photography transects</li>
+              <li><span class="dot"></span>eDNA water sampling</li>
+              <li><span class="dot"></span>Site mapping &amp; GPS logging</li>
+            </ul>
+          </div>
+          <div class="research-col">
+            <div class="research-col__heading">Vessel Operations</div>
+            <ul class="research-col__list">
+              <li><span class="dot"></span>Local research vessels</li>
+              <li><span class="dot"></span>18 full expedition dives</li>
+              <li><span class="dot"></span>Multiple Indo-Pacific sites</li>
+              <li><span class="dot"></span>12 eDNA study sites</li>
+              <li><span class="dot"></span>CCR safety protocols standard</li>
+              <li><span class="dot"></span>International collaborator dives</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="ctab-panel" data-ctab-panel="processing">
+        <div class="research__cols">
+          <div class="research-col">
+            <div class="research-col__heading">Image Analysis</div>
+            <ul class="research-col__list">
+              <li><span class="dot"></span>CPCE &amp; CoralNet image analysis</li>
+              <li><span class="dot"></span>Colony-level morphological scoring</li>
+              <li><span class="dot"></span>Independent diver cross-checking</li>
+              <li><span class="dot"></span>Inter-observer agreement &gt;90%</li>
+              <li><span class="dot"></span>Standardised gorgonian ID protocol</li>
+              <li><span class="dot"></span>Photographic voucher archive</li>
+            </ul>
+          </div>
+          <div class="research-col">
+            <div class="research-col__heading">Phylogenomics</div>
+            <ul class="research-col__list">
+              <li><span class="dot"></span>MEGA / IQ-TREE phylogenetic pipeline</li>
+              <li><span class="dot"></span>Bayesian species delimitation</li>
+              <li><span class="dot"></span>Multi-gene marker approach</li>
+              <li><span class="dot"></span>400–700nm emission mapping</li>
+              <li><span class="dot"></span>Morphological character coding</li>
+              <li><span class="dot"></span>Integrated with voucher specimens</li>
+            </ul>
+          </div>
+          <div class="research-col">
+            <div class="research-col__heading">eDNA Processing</div>
+            <ul class="research-col__list">
+              <li><span class="dot"></span>Illumina MiSeq sequencing</li>
+              <li><span class="dot"></span>12S &amp; COI marker genes</li>
+              <li><span class="dot"></span>NCBI BLAST species matching</li>
+              <li><span class="dot"></span>Occupancy modelling (R)</li>
+              <li><span class="dot"></span>Field blanks &amp; controls included</li>
+              <li><span class="dot"></span>Raw FASTQ files archived</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="ctab-panel" data-ctab-panel="access">
+        <div class="research__cols">
+          <div class="research-col">
+            <div class="research-col__heading">Licence</div>
+            <ul class="research-col__list">
+              <li><span class="dot"></span>Creative Commons CC BY 4.0</li>
+              <li><span class="dot"></span>Free for academic use</li>
+              <li><span class="dot"></span>Attribution required</li>
+              <li><span class="dot"></span>Commercial use — contact us</li>
+              <li><span class="dot"></span>Full DOI on release</li>
+            </ul>
+          </div>
+          <div class="research-col">
+            <div class="research-col__heading">Format &amp; Size</div>
+            <ul class="research-col__list">
+              <li><span class="dot"></span>Video — MP4 / H.264, ~2.4TB</li>
+              <li><span class="dot"></span>Ethograms — CSV / JSON</li>
+              <li><span class="dot"></span>Spectral — MATLAB / CSV</li>
+              <li><span class="dot"></span>eDNA — FASTQ + processed OTU</li>
+              <li><span class="dot"></span>Oceanographic — NetCDF</li>
+            </ul>
+          </div>
+          <div class="research-col">
+            <div class="research-col__heading">Release Timeline</div>
+            <ul class="research-col__list">
+              <li><span class="dot"></span>Early access — on request now</li>
+              <li><span class="dot"></span>Open release — Q2 2026</li>
+              <li><span class="dot"></span>Portal — Open Ocean Data Portal</li>
+              <li><span class="dot"></span>Zenodo mirror (on release)</li>
+              <li><span class="dot"></span>GBIF submission (eDNA)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- OPEN DATA CTA -->
+  <section id="dataset">
+    <div class="open-data-split">
+      <div class="open-data-split__text">
+        <span class="label-upper">Open Science</span>
+        <h2 class="section-heading section-heading--sm">Access the Full<br>Expedition Dataset</h2>
+        <p>The complete Atolla dataset — expedition imagery, eDNA sequences, specimen records, and dive transect data — will be released to the global research community in Q2 2026 through the Open Ocean Data Portal.</p>
+        <p>Researchers seeking early access for peer review or active collaboration should contact Dr Rowley directly.</p>
+        <div>
+          <a href="mailto:contact@atolla.org" class="btn btn--teal">Request Early Access</a>
+        </div>
+      </div>
+      <div class="open-data-split__dark">
+        <span class="label-upper label-upper--white">Available on Release</span>
+        <div class="dataset-card">
+          <div class="dataset-card__label">Imagery Archive</div>
+          <div class="dataset-card__name">atolla-expedition-imagery-2024-26</div>
+          <div class="dataset-card__meta">JPEG / MP4 &middot; 2,840 files &middot; CC BY 4.0</div>
+        </div>
+        <div class="dataset-card">
+          <div class="dataset-card__label">Transect Surveys</div>
+          <div class="dataset-card__name">atolla-expedition-transects-2024-26</div>
+          <div class="dataset-card__meta">CSV / JSON &middot; 94 transects &middot; 312 specimens</div>
+        </div>
+        <div class="dataset-card">
+          <div class="dataset-card__label">eDNA &amp; Oceanographic</div>
+          <div class="dataset-card__name">atolla-expedition-edna-ctd-2024-26</div>
+          <div class="dataset-card__meta">FASTQ + NetCDF &middot; 480 samples &middot; 18 dives</div>
+        </div>
+        <div class="dataset-card">
+          <div class="dataset-card__label">Specimen Records</div>
+          <div class="dataset-card__name">atolla-expedition-specimens-2024-26</div>
+          <div class="dataset-card__meta">Morphological + genetic data &middot; 312 vouchers</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer__inner">
+      <div class="footer__logo">Atolla Research Initiative</div>
+      <div class="footer__links">
+        <a href="index.html">Home</a>
+        <a href="get-involved.html">Get Involved</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer__copy">&copy; 2026</div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('mainNav');
+    function updateNav() { nav.classList.toggle('scrolled', window.scrollY > 60); }
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    document.querySelectorAll('.ctab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.ctab;
+        document.querySelectorAll('.ctab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+        btn.classList.add('active'); btn.setAttribute('aria-selected', 'true');
+        document.querySelectorAll('.ctab-panel').forEach(p => p.classList.toggle('active', p.dataset.ctabPanel === target));
+      });
+    });
+  </script>
+
+</body>
+</html>
