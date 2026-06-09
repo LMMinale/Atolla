@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Atolla Research Initiative</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400;0,600;0,700;1,400&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal:    #0e7c7b;
+      --teal-dk: #0a5e5d;
+      --teal-lt: #e6f4f4;
+      --black:   #0f0f0f;
+      --grey:    #f5f5f5;
+      --mid:     #6b7280;
+      --border:  #e0e0e0;
+      --white:   #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 400;
+      color: var(--black);
+      background: var(--white);
+      line-height: 1.75;
+      font-size: 16px;
+    }
+
+    /* ── Nav ──────────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 60px;
+    }
+    .nav-brand {
+      font-family: 'Archivo Narrow', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .nav-brand span { color: var(--teal); }
+    .nav-back {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.85rem;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--white); }
+
+    /* ── Hero strip ───────────────────────────────────────────── */
+    .hero {
+      background: var(--teal);
+      padding: 3.5rem 2.5rem 2.5rem;
+      text-align: center;
+    }
+    .hero-label {
+      font-family: 'Archivo Narrow', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 0.6rem;
+    }
+    .hero h1 {
+      font-family: 'Archivo Narrow', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .hero-meta {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* ── Layout ───────────────────────────────────────────────── */
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 3rem;
+      align-items: start;
+      padding: 3.5rem 0 5rem;
+    }
+
+    @media (max-width: 720px) {
+      .layout { grid-template-columns: 1fr; }
+      .toc { display: none; }
+    }
+
+    /* ── TOC ──────────────────────────────────────────────────── */
+    .toc {
+      position: sticky;
+      top: 80px;
+      border-left: 2px solid var(--teal);
+      padding-left: 1rem;
+    }
+    .toc-title {
+      font-family: 'Archivo Narrow', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 0.8rem;
+    }
+    .toc a {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--mid);
+      text-decoration: none;
+      padding: 0.25rem 0;
+      transition: color 0.15s;
+      line-height: 1.4;
+    }
+    .toc a:hover { color: var(--teal); }
+
+    /* ── Content ──────────────────────────────────────────────── */
+    .content section {
+      margin-bottom: 2.8rem;
+      padding-bottom: 2.8rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .content section:last-child {
+      border-bottom: none;
+    }
+
+    .section-num {
+      font-family: 'Archivo Narrow', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.4rem;
+    }
+
+    h2 {
+      font-family: 'Archivo Narrow', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 1rem;
+      line-height: 1.25;
+    }
+
+    h3 {
+      font-family: 'Archivo Narrow', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--teal);
+      margin: 1.4rem 0 0.5rem;
+    }
+
+    p { margin-bottom: 0.9rem; color: #2a2a2a; }
+    p:last-child { margin-bottom: 0; }
+
+    ul, ol {
+      padding-left: 1.4rem;
+      margin-bottom: 0.9rem;
+    }
+    li { margin-bottom: 0.35rem; color: #2a2a2a; }
+
+    a { color: var(--teal); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Callout boxes ────────────────────────────────────────── */
+    .callout {
+      background: var(--teal-lt);
+      border-left: 3px solid var(--teal);
+      padding: 1rem 1.2rem;
+      border-radius: 0 4px 4px 0;
+      margin: 1.2rem 0;
+      font-size: 0.92rem;
+    }
+    .callout strong { color: var(--teal); }
+
+    .callout-pending {
+      background: #fff8e1;
+      border-left: 3px solid #f59e0b;
+      padding: 1rem 1.2rem;
+      border-radius: 0 4px 4px 0;
+      margin: 1.2rem 0;
+      font-size: 0.88rem;
+      color: #78350f;
+    }
+    .callout-pending strong { color: #92400e; }
+
+    /* ── Table ────────────────────────────────────────────────── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+    th {
+      background: var(--teal);
+      color: var(--white);
+      font-family: 'Archivo Narrow', sans-serif;
+      font-weight: 700;
+      text-align: left;
+      padding: 0.6rem 0.9rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+    }
+    td {
+      padding: 0.55rem 0.9rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tr:nth-child(even) td { background: var(--grey); }
+
+    /* ── Rights grid ──────────────────────────────────────────── */
+    .rights-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+      margin: 1rem 0;
+    }
+    @media (max-width: 500px) { .rights-grid { grid-template-columns: 1fr; } }
+    .right-card {
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--teal);
+      padding: 0.8rem 1rem;
+      border-radius: 2px;
+    }
+    .right-card strong {
+      display: block;
+      font-family: 'Archivo Narrow', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--teal);
+      margin-bottom: 0.3rem;
+    }
+    .right-card p { font-size: 0.85rem; margin: 0; }
+
+    /* ── Contact block ────────────────────────────────────────── */
+    .contact-block {
+      background: var(--black);
+      color: var(--white);
+      padding: 1.5rem 1.8rem;
+      border-radius: 4px;
+      margin-top: 1.2rem;
+    }
+    .contact-block p { color: rgba(255,255,255,0.75); margin-bottom: 0.4rem; }
+    .contact-block a { color: var(--teal); }
+    .contact-block strong { color: var(--white); }
+
+    /* ── Footer ───────────────────────────────────────────────── */
+    footer {
+      background: var(--black);
+      color: rgba(255,255,255,0.45);
+      text-align: center;
+      padding: 1.8rem;
+      font-size: 0.8rem;
+    }
+    footer a { color: var(--teal); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <a class="nav-brand" href="index.html">Atolla <span>Research</span></a>
+  <a class="nav-back" href="index.html">← Back to site</a>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-label">Legal</div>
+  <h1>Privacy Policy</h1>
+  <p class="hero-meta">Atolla Research Initiative &nbsp;·&nbsp; Last updated: June 2026</p>
+</div>
+
+<!-- Body -->
+<div class="container">
+  <div class="layout">
+
+    <!-- Table of contents -->
+    <aside class="toc">
+      <div class="toc-title">On this page</div>
+      <a href="#who-we-are">Who we are</a>
+      <a href="#what-we-collect">What we collect</a>
+      <a href="#how-we-use">How we use it</a>
+      <a href="#storage">Storage &amp; security</a>
+      <a href="#sharing">Sharing</a>
+      <a href="#retention">Retention</a>
+      <a href="#cookies">Cookies</a>
+      <a href="#your-rights">Your rights</a>
+      <a href="#children">Children</a>
+      <a href="#changes">Changes</a>
+      <a href="#contact">Contact us</a>
+    </aside>
+
+    <!-- Main content -->
+    <main class="content">
+
+      <!-- Intro -->
+      <section id="intro">
+        <p>This Privacy Policy explains how <strong>Atolla Research Initiative</strong>, operated by Rowley Marine LLC ("Atolla", "we", "us", or "our"), collects, uses, and protects information when you visit <strong>atolla.bio</strong> or interact with us.</p>
+        <p>We collect the minimum data necessary to operate this site. We do not sell your data. We do not share it with advertisers. This policy is written in plain English — if something is unclear, <a href="#contact">contact us</a>.</p>
+        <div class="callout">
+          <strong>Our baseline:</strong> If you only browse this website and do not submit any form, we do not collect any personally identifiable information about you.
+        </div>
+      </section>
+
+      <!-- 1. Who we are -->
+      <section id="who-we-are">
+        <div class="section-num">01</div>
+        <h2>Who We Are</h2>
+        <p><strong>Atolla Research Initiative</strong> is a mesophotic reef science and data programme operated by Rowley Marine LLC, led by Dr Sarah Rowley. Our research focuses on coral ecosystems at depths of 30–200 metres across the Indo-Pacific.</p>
+        <p>For the purposes of data protection law, the data controller is:</p>
+        <div class="contact-block">
+          <p><strong>Rowley Marine LLC / Atolla Research Initiative</strong></p>
+          <p>Email: <a href="mailto:privacy@atolla.bio">privacy@atolla.bio</a></p>
+          <p>Website: <a href="https://atolla.bio">atolla.bio</a></p>
+        </div>
+      </section>
+
+      <!-- 2. What we collect -->
+      <section id="what-we-collect">
+        <div class="section-num">02</div>
+        <h2>What We Collect</h2>
+        <p>We currently collect personal data in two ways:</p>
+
+        <h3>Newsletter sign-up</h3>
+        <p>When you subscribe to our newsletter via the sign-up form on the site, we collect:</p>
+        <ul>
+          <li>Your email address</li>
+        </ul>
+        <p>We do not require your name to subscribe. Providing your email is entirely voluntary.</p>
+
+        <h3>Contact form</h3>
+        <p>When you send us a message via the contact form, we collect:</p>
+        <ul>
+          <li>Your name</li>
+          <li>Your email address</li>
+          <li>The content of your message</li>
+          <li>Any additional information you choose to include</li>
+        </ul>
+
+        <h3>Technical data (automatic)</h3>
+        <p>Like most websites, our hosting infrastructure may automatically log basic technical data when you visit, including your approximate IP address, browser type, and the pages you view. This data is used solely for server security and uptime monitoring. It is not linked to any personal profile.</p>
+
+        <div class="callout-pending">
+          <strong>Coming soon:</strong> We plan to add website analytics (to understand how visitors use the site) and may introduce functional cookies. When we do, this policy will be updated and you will be given the opportunity to consent. Until then, we do not use analytics or tracking cookies.
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Data type</th>
+              <th>When collected</th>
+              <th>Required?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Email address</td>
+              <td>Newsletter sign-up</td>
+              <td>Yes (to send newsletters)</td>
+            </tr>
+            <tr>
+              <td>Name, email, message</td>
+              <td>Contact form submission</td>
+              <td>Yes (to reply to you)</td>
+            </tr>
+            <tr>
+              <td>IP address, browser type</td>
+              <td>Automatically on each visit</td>
+              <td>Automatic (server logs)</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 3. How we use it -->
+      <section id="how-we-use">
+        <div class="section-num">03</div>
+        <h2>How We Use Your Information</h2>
+        <p>We use your information only for the purpose for which you provided it:</p>
+        <ul>
+          <li><strong>Email address (newsletter):</strong> To send you updates about Atolla's research, expeditions, and publications. Each email includes a one-click unsubscribe link.</li>
+          <li><strong>Contact form data:</strong> To respond to your inquiry. We do not add you to any mailing list based on a contact form submission unless you explicitly request it.</li>
+          <li><strong>Server logs:</strong> To maintain site security and diagnose technical issues. Not used for any profiling or marketing purpose.</li>
+        </ul>
+        <p>We will never use your data to send unsolicited commercial messages, share it with advertisers, or build profiles for targeting purposes.</p>
+
+        <h3>Legal basis (GDPR)</h3>
+        <p>If you are located in the European Economic Area or United Kingdom, our legal basis for processing your data is:</p>
+        <ul>
+          <li><strong>Consent</strong> — for newsletter subscriptions. You can withdraw consent at any time by unsubscribing.</li>
+          <li><strong>Legitimate interests</strong> — for contact form responses (replying to someone who contacts us) and server security logging.</li>
+        </ul>
+      </section>
+
+      <!-- 4. Storage & security -->
+      <section id="storage">
+        <div class="section-num">04</div>
+        <h2>Storage &amp; Security</h2>
+        <p>Your data is stored on secure servers. We take reasonable technical and organisational measures to protect it against unauthorised access, loss, or disclosure.</p>
+        <p>Newsletter email addresses are stored with our email service provider. Contact form submissions are received by email and stored in our operational email inbox. Neither is shared with third parties beyond what is described in Section 5 below.</p>
+        <p>No method of transmission over the internet is 100% secure. While we do our best to protect your data, we cannot guarantee absolute security.</p>
+      </section>
+
+      <!-- 5. Sharing -->
+      <section id="sharing">
+        <div class="section-num">05</div>
+        <h2>Sharing Your Data</h2>
+        <p>We do not sell, rent, or trade your personal data. We share it only in the following limited circumstances:</p>
+        <ul>
+          <li><strong>Service providers:</strong> We use third-party tools to operate the site and send newsletters (for example, an email service provider). These providers are contractually restricted from using your data for any purpose other than providing their service to us.</li>
+          <li><strong>Legal requirements:</strong> We may disclose your data if required to do so by law, court order, or to protect the rights and safety of Atolla, its team, or the public.</li>
+          <li><strong>Business transfer:</strong> If Atolla Research Initiative or Rowley Marine LLC is transferred or restructured, your data may be transferred as part of that transaction. You will be notified in advance if this occurs.</li>
+        </ul>
+        <p>In all other cases, we ask for your explicit consent before sharing.</p>
+      </section>
+
+      <!-- 6. Retention -->
+      <section id="retention">
+        <div class="section-num">06</div>
+        <h2>How Long We Keep Your Data</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Data type</th>
+              <th>Retention period</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Newsletter email address</td>
+              <td>Until you unsubscribe, then deleted within 30 days</td>
+            </tr>
+            <tr>
+              <td>Contact form submissions</td>
+              <td>Up to 2 years, then deleted unless ongoing correspondence requires otherwise</td>
+            </tr>
+            <tr>
+              <td>Server access logs</td>
+              <td>Up to 90 days, then automatically deleted</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>You can request earlier deletion at any time — see Section 8 (Your Rights).</p>
+      </section>
+
+      <!-- 7. Cookies -->
+      <section id="cookies">
+        <div class="section-num">07</div>
+        <h2>Cookies</h2>
+        <p>A cookie is a small text file stored on your device when you visit a website.</p>
+
+        <h3>What we currently use</h3>
+        <p>At present, atolla.bio uses only the basic session cookies necessary for the site to function correctly — for example, to remember your session if you submit a form. These cookies do not track you across other sites and are deleted when you close your browser.</p>
+        <p>We do not currently use analytics cookies, advertising cookies, or any third-party tracking cookies.</p>
+
+        <div class="callout-pending">
+          <strong>Planned update:</strong> We intend to add website analytics in the near future. When we do, we will implement a cookie consent banner and update this section to describe exactly what is being set and why. You will always be able to opt out.
+        </div>
+
+        <h3>How to control cookies</h3>
+        <p>You can set your browser to refuse all or some cookies, or to alert you when websites set or access cookies. If you disable or refuse certain cookies, some parts of this site may become inaccessible or not function properly. For more information about cookies, visit <a href="https://www.allaboutcookies.org" target="_blank" rel="noopener">allaboutcookies.org</a>.</p>
+      </section>
+
+      <!-- 8. Your rights -->
+      <section id="your-rights">
+        <div class="section-num">08</div>
+        <h2>Your Rights</h2>
+        <p>Depending on where you are located, you have certain rights over your personal data. We honour all of the following:</p>
+        <div class="rights-grid">
+          <div class="right-card">
+            <strong>Access</strong>
+            <p>Request a copy of the personal data we hold about you.</p>
+          </div>
+          <div class="right-card">
+            <strong>Correction</strong>
+            <p>Ask us to correct inaccurate or incomplete data.</p>
+          </div>
+          <div class="right-card">
+            <strong>Deletion</strong>
+            <p>Ask us to delete your data ("right to be forgotten").</p>
+          </div>
+          <div class="right-card">
+            <strong>Objection</strong>
+            <p>Object to us processing your data for a specific purpose.</p>
+          </div>
+          <div class="right-card">
+            <strong>Portability</strong>
+            <p>Receive your data in a structured, machine-readable format.</p>
+          </div>
+          <div class="right-card">
+            <strong>Withdraw consent</strong>
+            <p>Unsubscribe or revoke consent at any time, no questions asked.</p>
+          </div>
+        </div>
+        <p>To exercise any of these rights, email us at <a href="mailto:privacy@atolla.bio">privacy@atolla.bio</a>. We will respond within 30 days. We will never charge a fee for a legitimate request.</p>
+        <p>If you are in the EEA or UK and believe we have not handled your data lawfully, you have the right to lodge a complaint with your local data protection authority.</p>
+
+        <h3>California residents (CCPA)</h3>
+        <p>If you are a California resident, you have the right to know what personal information we collect, request deletion of your personal information, and opt out of any sale of personal information. We do not sell personal information. To exercise your California rights, contact us at <a href="mailto:privacy@atolla.bio">privacy@atolla.bio</a>.</p>
+      </section>
+
+      <!-- 9. Children -->
+      <section id="children">
+        <div class="section-num">09</div>
+        <h2>Children's Privacy</h2>
+        <p>This website is not directed at children under the age of 13. We do not knowingly collect personal data from children. If you believe a child has provided us with their information, please contact us and we will delete it promptly.</p>
+      </section>
+
+      <!-- 10. Changes -->
+      <section id="changes">
+        <div class="section-num">10</div>
+        <h2>Changes to This Policy</h2>
+        <p>We will update this policy when our data practices change — in particular when we add analytics or cookie tracking. When we make material changes, we will update the "Last updated" date at the top of this page.</p>
+        <p>If you are subscribed to our newsletter, we will notify you of significant changes by email before they take effect.</p>
+      </section>
+
+      <!-- 11. Contact -->
+      <section id="contact">
+        <div class="section-num">11</div>
+        <h2>Contact Us</h2>
+        <p>For any privacy-related question, request, or complaint, please reach out:</p>
+        <div class="contact-block">
+          <p><strong>Atolla Research Initiative / Rowley Marine LLC</strong></p>
+          <p>Email: <a href="mailto:privacy@atolla.bio">privacy@atolla.bio</a></p>
+          <p>Website: <a href="https://atolla.bio">atolla.bio</a></p>
+          <p style="margin-top:0.8rem; font-size:0.85rem;">We aim to respond to all privacy requests within 5 business days, and within 30 days at the latest.</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2026 Rowley Marine LLC / Atolla Research Initiative &nbsp;·&nbsp;
+    <a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp;
+    <a href="index.html">Home</a>
+  </p>
+</footer>
+
+</body>
+</html>
