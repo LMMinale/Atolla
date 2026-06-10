@@ -1058,7 +1058,108 @@
         document.getElementById('nlConfirm').style.display = 'block';
       });
     }
+
+    // Newsletter popup — show after 30s, once per session
+    (function() {
+      if (sessionStorage.getItem('atolla-popup-seen')) return;
+      const popup = document.getElementById('nlPopup');
+      const overlay = document.getElementById('nlPopupOverlay');
+
+      function openPopup() {
+        popup.classList.add('nlp--visible');
+        overlay.classList.add('nlp--visible');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closePopup() {
+        popup.classList.remove('nlp--visible');
+        overlay.classList.remove('nlp--visible');
+        document.body.style.overflow = '';
+        sessionStorage.setItem('atolla-popup-seen', '1');
+      }
+
+      setTimeout(openPopup, 30000);
+
+      overlay.addEventListener('click', closePopup);
+      document.getElementById('nlPopupClose').addEventListener('click', closePopup);
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopup(); });
+
+      document.getElementById('nlPopupForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const input = this.querySelector('input[type="email"]');
+        if (!input.value || !input.checkValidity()) { input.style.outline = '2px solid #e8715a'; return; }
+        this.style.display = 'none';
+        document.getElementById('nlPopupConfirm').style.display = 'block';
+        setTimeout(closePopup, 2500);
+      });
+    })();
   </script>
+
+  <!-- NEWSLETTER POPUP -->
+  <div id="nlPopupOverlay" style="
+    position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:2000;
+    opacity:0;pointer-events:none;transition:opacity 0.35s;
+  "></div>
+
+  <div id="nlPopup" style="
+    position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.97);
+    z-index:2001;width:min(860px,92vw);display:grid;
+    grid-template-columns:1fr 1fr;
+    background:#ffffff;border:1px solid #000000;
+    opacity:0;pointer-events:none;transition:opacity 0.35s,transform 0.35s;
+  ">
+
+    <!-- Left: image panel -->
+    <div style="
+      background:linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.72)),
+        url('images/gorgonian-mesophotic-primnoidae-soniajrowley-sjrllc-deep-75m-indonesia-lombok-rebreather-ccr.jpg') center/cover;
+      min-height:380px;display:flex;flex-direction:column;justify-content:flex-end;padding:2.5rem;
+    ">
+      <span style="font-family:'Barlow',sans-serif;font-size:0.68rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.6);display:block;margin-bottom:0.6rem;">Stay Informed</span>
+      <div style="font-family:'Archivo Narrow',sans-serif;font-weight:700;font-size:clamp(1.6rem,2.5vw,2.2rem);line-height:1.1;color:#ffffff;">Follow the<br>Expedition</div>
+    </div>
+
+    <!-- Right: form panel -->
+    <div style="padding:2.5rem;display:flex;flex-direction:column;justify-content:center;position:relative;">
+      <button id="nlPopupClose" aria-label="Close" style="
+        position:absolute;top:1rem;right:1rem;
+        background:none;border:none;cursor:pointer;padding:4px;line-height:1;
+        font-size:1.2rem;color:rgba(0,0,0,0.4);transition:color 0.2s;
+      " onmouseover="this.style.color='#000'" onmouseout="this.style.color='rgba(0,0,0,0.4)'">&#x2715;</button>
+
+      <span style="font-family:'Barlow',sans-serif;font-size:0.68rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(0,0,0,0.4);display:block;margin-bottom:0.75rem;">Atolla Research Initiative</span>
+      <h2 style="font-family:'Archivo Narrow',sans-serif;font-weight:700;font-size:1.5rem;color:#000000;margin-bottom:0.75rem;line-height:1.2;">Field dispatches from the mesophotic zone</h2>
+      <p style="font-family:'Barlow',sans-serif;font-size:0.88rem;font-weight:300;color:#555555;line-height:1.65;margin-bottom:1.8rem;">New species discoveries, expedition updates, and open data releases — direct from Dr Rowley's dives.</p>
+
+      <form id="nlPopupForm" novalidate>
+        <div style="display:flex;gap:0;margin-bottom:0.75rem;">
+          <input type="email" placeholder="Your email address" autocomplete="email" required
+            style="flex:1;font-family:'Barlow',sans-serif;font-size:0.88rem;color:#000000;background:#ffffff;border:1px solid #000000;border-right:none;padding:0.75rem 1rem;outline:none;">
+          <button type="submit" style="
+            font-family:'Barlow',sans-serif;font-size:0.78rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;
+            background:#000000;color:#ffffff;border:1px solid #000000;padding:0.75rem 1.2rem;cursor:pointer;white-space:nowrap;transition:background 0.2s;
+          " onmouseover="this.style.background='#0e7c7b';this.style.borderColor='#0e7c7b'" onmouseout="this.style.background='#000000';this.style.borderColor='#000000'">Subscribe</button>
+        </div>
+        <p style="font-family:'Barlow',sans-serif;font-size:0.75rem;color:rgba(0,0,0,0.35);margin:0;">No spam. Unsubscribe anytime.</p>
+      </form>
+
+      <p id="nlPopupConfirm" style="display:none;font-family:'Barlow',sans-serif;font-size:0.9rem;color:#0e7c7b;padding:0.75rem 0;">You&#39;re in &mdash; welcome aboard.</p>
+    </div>
+  </div>
+
+  <style>
+    #nlPopup.nlp--visible, #nlPopupOverlay.nlp--visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    #nlPopup.nlp--visible {
+      transform: translate(-50%, -50%) scale(1);
+    }
+    @media (max-width: 600px) {
+      #nlPopup { grid-template-columns: 1fr !important; }
+      #nlPopup > div:first-child { min-height: 180px !important; }
+    }
+  </style>
 
 </body>
 </html>
