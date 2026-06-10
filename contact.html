@@ -343,30 +343,41 @@
 
     .info-divider { border-top: 1px solid #e0e0e0; }
 
-    /* Social links — same bordered row as index */
+    /* Social links — clean grid */
     .social-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
       border: 1px solid #000000;
     }
 
     .social-link {
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      font-family: 'Archivo Narrow', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
       color: #000000;
-      padding: 1rem 1.4rem;
+      padding: 1.8rem 1.4rem;
       border-right: 1px solid #000000;
-      border-bottom: 1px solid #000000;
+      text-align: center;
       transition: color 0.2s, background 0.2s;
-      display: block;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
     }
 
     .social-link:last-child { border-right: none; }
     .social-link:hover { color: #0e7c7b; background: #f9f9f9; }
+
+    .social-link .social-handle {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: #aaaaaa;
+      text-transform: none;
+    }
 
     /* ── INQUIRY TYPES — 3 col ── */
     .inquiry-section { background: #f5f5f5; }
@@ -415,7 +426,14 @@
       margin: 0 auto;
     }
 
-    .follow-inner .label-upper { margin-bottom: 1.5rem; }
+    .follow-inner .label-upper { margin-bottom: 2rem; }
+    .follow-inner .follow-heading {
+      font-family: 'Archivo Narrow', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      line-height: 1.1;
+      margin-bottom: 2.5rem;
+    }
 
     /* ── FOOTER ── */
     footer {
@@ -470,7 +488,11 @@
       .inquiry-grid { grid-template-columns: 1fr; border-top: none; }
       .inquiry-col { border-right: none; border-top: 1px solid #000; padding: 2rem 0; }
       .inquiry-col:not(:first-child) { padding-left: 0; }
-      .social-link:last-child { border-right: 1px solid #000; }
+      .social-links { grid-template-columns: repeat(3, 1fr); }
+      .social-link:nth-child(3) { border-right: none; }
+      .social-link:nth-child(4),
+      .social-link:nth-child(5) { border-top: 1px solid #000; }
+      .social-link:nth-child(5) { border-right: none; }
     }
 
     @media (max-width: 480px) {
@@ -478,8 +500,10 @@
       .nav__inner { padding: 0 20px; }
       .footer__inner { padding: 0 20px; }
       .section { padding: 4.5rem 0; }
-      .social-links { flex-direction: column; }
-      .social-link { border-right: none; }
+      .social-links { grid-template-columns: repeat(2, 1fr); }
+      .social-link { border-right: 1px solid #000; }
+      .social-link:nth-child(2n) { border-right: none; }
+      .social-link:nth-child(n+3) { border-top: 1px solid #000; }
     }
   </style>
 </head>
@@ -572,16 +596,6 @@
       <div class="contact-info-col">
 
         <div class="info-block">
-          <span class="info-block__label">Email</span>
-          <div class="info-block__value">
-            <a href="mailto:contact@atolla.org">contact@atolla.org</a>
-          </div>
-          <p class="info-block__sub">For general enquiries, press, and research partnerships.</p>
-        </div>
-
-        <div class="info-divider"></div>
-
-        <div class="info-block">
           <span class="info-block__label">Lead Researcher</span>
           <div class="info-block__value">Dr Sarah Rowley</div>
           <p class="info-block__sub">Scripps Institution of Oceanography<br>Mesophotic Reef Research Initiative</p>
@@ -595,12 +609,28 @@
   <section class="follow-section">
     <div class="follow-inner">
       <span class="label-upper">Follow the Research</span>
+      <div class="follow-heading">Stay Connected</div>
       <div class="social-links">
-        <a href="#" class="social-link" target="_blank" rel="noopener">Instagram</a>
-        <a href="#" class="social-link" target="_blank" rel="noopener">YouTube</a>
-        <a href="#" class="social-link" target="_blank" rel="noopener">X / Twitter</a>
-        <a href="#" class="social-link" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="#" class="social-link" target="_blank" rel="noopener">ResearchGate</a>
+        <a href="#" class="social-link" target="_blank" rel="noopener">
+          Instagram
+          <span class="social-handle">@atolla.research</span>
+        </a>
+        <a href="#" class="social-link" target="_blank" rel="noopener">
+          YouTube
+          <span class="social-handle">Atolla Research</span>
+        </a>
+        <a href="#" class="social-link" target="_blank" rel="noopener">
+          X / Twitter
+          <span class="social-handle">@atolla_research</span>
+        </a>
+        <a href="#" class="social-link" target="_blank" rel="noopener">
+          LinkedIn
+          <span class="social-handle">Atolla Research Initiative</span>
+        </a>
+        <a href="#" class="social-link" target="_blank" rel="noopener">
+          ResearchGate
+          <span class="social-handle">Dr Sarah Rowley</span>
+        </a>
       </div>
     </div>
   </section>
@@ -615,7 +645,7 @@
         <a href="data.html">The Data</a>
         <a href="privacy.html">Privacy</a>
       </div>
-      <div class="footer__copy">&copy; 2026</div>
+      <div class="footer__copy">&copy; 2026 &nbsp;&middot;&nbsp; Founded in San Francisco</div>
     </div>
   </footer>
 
