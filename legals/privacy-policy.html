@@ -4,11 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy — Atolla Research Initiative</title>
-  <meta name="description" content="Privacy policy for the Atolla Research Initiative, a mesophotic reef science and data programme led by Dr Sonia J Rowley." />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://atolla.bio/privacy.html" />
-  <link rel="icon" href="/images/favicon.png" type="image/png" />
-  <meta name="theme-color" content="#0a1a2f" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400;0,600;0,700;1,400&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -16,407 +11,292 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --teal:   #0e7c7b;
-      --teal-dk:#0a5e5d;
-      --black:  #000000;
-      --grey:   #f5f5f5;
-      --border: #000000;
-      --mid:    rgba(0,0,0,0.45);
-      --white:  #ffffff;
+      --teal:    #0e7c7b;
+      --teal-dk: #0a5e5d;
+      --teal-lt: #e6f4f4;
+      --black:   #0f0f0f;
+      --grey:    #f5f5f5;
+      --mid:     #6b7280;
+      --border:  #e0e0e0;
+      --white:   #ffffff;
     }
 
-    html { scroll-behavior: smooth; font-size: 16px; }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Barlow', sans-serif;
       font-weight: 400;
       color: var(--black);
       background: var(--white);
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
+      line-height: 1.75;
+      font-size: 16px;
     }
 
-    a { color: inherit; text-decoration: none; }
-
-    /* ── NAV — matches other Atolla pages ── */
-    .nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 1000;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      background: #ffffff;
-      border-bottom: 1px solid #000000;
-      transition: background 0.25s, border-color 0.25s;
-    }
-
-    .nav__inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 40px;
-      width: 100%;
+    /* ── Nav ──────────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--black);
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 60px;
     }
-
-    .nav__logo {
+    .nav-brand {
       font-family: 'Archivo Narrow', sans-serif;
       font-weight: 700;
-      font-size: 1.05rem;
-      letter-spacing: 0.02em;
-      color: #000000;
-    }
-
-    .nav__back {
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 500;
+      font-size: 1.1rem;
+      color: var(--white);
+      text-decoration: none;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: rgba(0,0,0,0.45);
+    }
+    .nav-brand span { color: var(--teal); }
+    .nav-back {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.85rem;
+      color: var(--mid);
+      text-decoration: none;
       transition: color 0.2s;
     }
+    .nav-back:hover { color: var(--white); }
 
-    .nav__back:hover { color: #000000; }
-
-    /* ── PAGE HEADER ── */
-    .page-header {
-      padding-top: 64px; /* offset fixed nav */
-      border-bottom: 1px solid #000000;
+    /* ── Hero strip ───────────────────────────────────────────── */
+    .hero {
+      background: var(--teal);
+      padding: 3.5rem 2.5rem 2.5rem;
+      text-align: center;
     }
-
-    .page-header__inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 5rem 40px 3.5rem;
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 2rem;
-    }
-
-    .page-header__label {
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 500;
+    .hero-label {
+      font-family: 'Archivo Narrow', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(0,0,0,0.4);
-      display: block;
-      margin-bottom: 0.75rem;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 0.6rem;
     }
-
-    .page-header h1 {
+    .hero h1 {
       font-family: 'Archivo Narrow', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
       font-weight: 700;
-      font-size: clamp(2.4rem, 5vw, 4rem);
-      line-height: 1.0;
-      color: #000000;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .hero-meta {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.7);
     }
 
-    .page-header__meta {
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 400;
-      color: rgba(0,0,0,0.4);
-      letter-spacing: 0.04em;
-      white-space: nowrap;
-      padding-bottom: 0.4rem;
-    }
-
-    /* ── LAYOUT ── */
-    .outer {
-      max-width: 1100px;
+    /* ── Layout ───────────────────────────────────────────────── */
+    .container {
+      max-width: 780px;
       margin: 0 auto;
-      padding: 0 40px;
+      padding: 0 1.5rem;
     }
 
     .layout {
       display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 4rem;
+      grid-template-columns: 220px 1fr;
+      gap: 3rem;
       align-items: start;
-      padding: 4rem 0 6rem;
+      padding: 3.5rem 0 5rem;
     }
 
-    /* ── TOC ── */
+    @media (max-width: 720px) {
+      .layout { grid-template-columns: 1fr; }
+      .toc { display: none; }
+    }
+
+    /* ── TOC ──────────────────────────────────────────────────── */
     .toc {
       position: sticky;
-      top: 88px;
-      border-left: 1px solid #000000;
-      padding-left: 1.2rem;
+      top: 80px;
+      border-left: 2px solid var(--teal);
+      padding-left: 1rem;
     }
-
     .toc-title {
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.18em;
+      font-family: 'Archivo Narrow', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: rgba(0,0,0,0.4);
-      margin-bottom: 1rem;
+      color: var(--mid);
+      margin-bottom: 0.8rem;
     }
-
     .toc a {
       display: block;
-      font-family: 'Barlow', sans-serif;
       font-size: 0.82rem;
-      font-weight: 400;
-      color: rgba(0,0,0,0.5);
-      padding: 0.3rem 0;
-      border-bottom: 1px solid rgba(0,0,0,0.08);
+      color: var(--mid);
+      text-decoration: none;
+      padding: 0.25rem 0;
       transition: color 0.15s;
       line-height: 1.4;
     }
+    .toc a:hover { color: var(--teal); }
 
-    .toc a:last-child { border-bottom: none; }
-    .toc a:hover { color: #000000; }
-
-    /* ── CONTENT ── */
+    /* ── Content ──────────────────────────────────────────────── */
     .content section {
-      padding-bottom: 3rem;
-      margin-bottom: 3rem;
-      border-bottom: 1px solid #000000;
+      margin-bottom: 2.8rem;
+      padding-bottom: 2.8rem;
+      border-bottom: 1px solid var(--border);
     }
-
     .content section:last-child {
       border-bottom: none;
-      padding-bottom: 0;
     }
 
     .section-num {
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.18em;
+      font-family: 'Archivo Narrow', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--teal);
-      display: block;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
     }
 
     h2 {
       font-family: 'Archivo Narrow', sans-serif;
+      font-size: 1.3rem;
       font-weight: 700;
-      font-size: 1.4rem;
-      color: #000000;
-      margin-bottom: 1.1rem;
-      line-height: 1.2;
+      color: var(--black);
+      margin-bottom: 1rem;
+      line-height: 1.25;
     }
 
     h3 {
       font-family: 'Archivo Narrow', sans-serif;
+      font-size: 1rem;
       font-weight: 700;
-      font-size: 0.95rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: #000000;
-      margin: 1.8rem 0 0.6rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid #000000;
+      color: var(--teal);
+      margin: 1.4rem 0 0.5rem;
     }
 
-    p { font-size: 0.95rem; color: #222222; margin-bottom: 0.85rem; line-height: 1.75; }
+    p { margin-bottom: 0.9rem; color: #2a2a2a; }
     p:last-child { margin-bottom: 0; }
 
-    ul, ol { padding-left: 1.4rem; margin-bottom: 0.85rem; }
-    li { font-size: 0.95rem; color: #222222; margin-bottom: 0.3rem; line-height: 1.65; }
-
-    strong { font-weight: 500; }
-
-    a.inline-link { color: var(--teal); }
-    a.inline-link:hover { text-decoration: underline; }
-
-    /* ── CALLOUT BOXES — editorial, no colour fills ── */
-    .callout {
-      border: 1px solid #000000;
-      border-left: 3px solid #000000;
-      background: var(--grey);
-      padding: 1.1rem 1.3rem;
-      margin: 1.4rem 0;
-      font-size: 0.9rem;
+    ul, ol {
+      padding-left: 1.4rem;
+      margin-bottom: 0.9rem;
     }
+    li { margin-bottom: 0.35rem; color: #2a2a2a; }
 
-    .callout strong { color: #000000; font-weight: 500; }
+    a { color: var(--teal); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Callout boxes ────────────────────────────────────────── */
+    .callout {
+      background: var(--teal-lt);
+      border-left: 3px solid var(--teal);
+      padding: 1rem 1.2rem;
+      border-radius: 0 4px 4px 0;
+      margin: 1.2rem 0;
+      font-size: 0.92rem;
+    }
+    .callout strong { color: var(--teal); }
 
     .callout-pending {
-      border: 1px solid #000000;
-      border-left: 3px solid rgba(0,0,0,0.35);
-      background: var(--grey);
-      padding: 1.1rem 1.3rem;
-      margin: 1.4rem 0;
+      background: #fff8e1;
+      border-left: 3px solid #f59e0b;
+      padding: 1rem 1.2rem;
+      border-radius: 0 4px 4px 0;
+      margin: 1.2rem 0;
       font-size: 0.88rem;
-      color: #333333;
+      color: #78350f;
     }
+    .callout-pending strong { color: #92400e; }
 
-    .callout-pending strong { font-weight: 500; color: #000000; }
-
-    /* ── TABLES ── */
+    /* ── Table ────────────────────────────────────────────────── */
     table {
       width: 100%;
       border-collapse: collapse;
-      margin: 1.2rem 0;
-      font-size: 0.88rem;
-    }
-
-    th {
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: rgba(0,0,0,0.5);
-      text-align: left;
-      padding: 0.65rem 1rem;
-      border-bottom: 1px solid #000000;
-      background: none;
-    }
-
-    td {
-      font-family: 'Barlow', sans-serif;
-      padding: 0.7rem 1rem;
-      border-bottom: 1px solid rgba(0,0,0,0.1);
-      vertical-align: top;
-      color: #222222;
+      margin: 1rem 0;
       font-size: 0.9rem;
     }
+    th {
+      background: var(--teal);
+      color: var(--white);
+      font-family: 'Archivo Narrow', sans-serif;
+      font-weight: 700;
+      text-align: left;
+      padding: 0.6rem 0.9rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+    }
+    td {
+      padding: 0.55rem 0.9rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tr:nth-child(even) td { background: var(--grey); }
 
-    tr:last-child td { border-bottom: none; }
-
-    /* ── RIGHTS GRID ── */
+    /* ── Rights grid ──────────────────────────────────────────── */
     .rights-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0;
-      margin: 1.2rem 0;
-      border: 1px solid #000000;
+      gap: 0.8rem;
+      margin: 1rem 0;
     }
-
+    @media (max-width: 500px) { .rights-grid { grid-template-columns: 1fr; } }
     .right-card {
-      padding: 1.1rem 1.2rem;
-      border-right: 1px solid #000000;
-      border-bottom: 1px solid #000000;
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--teal);
+      padding: 0.8rem 1rem;
+      border-radius: 2px;
     }
-
-    .right-card:nth-child(even) { border-right: none; }
-    .right-card:nth-last-child(-n+2) { border-bottom: none; }
-
     .right-card strong {
       display: block;
       font-family: 'Archivo Narrow', sans-serif;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       font-weight: 700;
-      color: #000000;
-      margin-bottom: 0.35rem;
+      color: var(--teal);
+      margin-bottom: 0.3rem;
     }
+    .right-card p { font-size: 0.85rem; margin: 0; }
 
-    .right-card p { font-size: 0.82rem; margin: 0; color: rgba(0,0,0,0.6); }
-
-    /* ── CONTACT BLOCK ── */
+    /* ── Contact block ────────────────────────────────────────── */
     .contact-block {
-      background: #000000;
-      color: #ffffff;
-      padding: 2rem;
-      margin-top: 1.4rem;
+      background: var(--black);
+      color: var(--white);
+      padding: 1.5rem 1.8rem;
+      border-radius: 4px;
+      margin-top: 1.2rem;
     }
-
-    .contact-block p { color: rgba(255,255,255,0.65); margin-bottom: 0.4rem; font-size: 0.9rem; }
-    .contact-block p:last-child { margin-bottom: 0; }
+    .contact-block p { color: rgba(255,255,255,0.75); margin-bottom: 0.4rem; }
     .contact-block a { color: var(--teal); }
-    .contact-block a:hover { text-decoration: underline; }
-    .contact-block strong { color: #ffffff; font-weight: 500; }
+    .contact-block strong { color: var(--white); }
 
-    /* ── FOOTER — matches other Atolla pages ── */
+    /* ── Footer ───────────────────────────────────────────────── */
     footer {
-      background: #000000;
-      color: #ffffff;
-      padding: 3rem 0;
-      border-top: 1px solid #000000;
-    }
-
-    .footer__inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .footer__logo {
-      font-family: 'Archivo Narrow', sans-serif;
-      font-weight: 700;
-      font-size: 1.05rem;
-      color: #ffffff;
-    }
-
-    .footer__links { display: flex; gap: 2rem; }
-
-    .footer__links a {
-      font-family: 'Barlow', sans-serif;
+      background: var(--black);
+      color: rgba(255,255,255,0.45);
+      text-align: center;
+      padding: 1.8rem;
       font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
-      transition: color 0.2s;
     }
-
-    .footer__links a:hover { color: #ffffff; }
-
-    .footer__copy {
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.75rem;
-      color: rgba(255,255,255,0.3);
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .nav__inner { padding: 0 24px; }
-      .page-header__inner { padding: 4rem 24px 3rem; flex-direction: column; align-items: flex-start; }
-      .outer { padding: 0 24px; }
-      .layout { grid-template-columns: 1fr; gap: 0; }
-      .toc { display: none; }
-      .footer__inner { padding: 0 24px; }
-      .rights-grid { grid-template-columns: 1fr; }
-      .right-card { border-right: none; }
-      .right-card:nth-last-child(-n+2) { border-bottom: 1px solid #000000; }
-      .right-card:last-child { border-bottom: none; }
-    }
-
-    @media (max-width: 480px) {
-      .nav__inner { padding: 0 20px; }
-      .outer { padding: 0 20px; }
-      .page-header__inner { padding: 3rem 20px 2.5rem; }
-      .footer__inner { padding: 0 20px; }
-    }
+    footer a { color: var(--teal); text-decoration: none; }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav">
-  <div class="nav__inner">
-    <a class="nav__logo" href="index.html">Atolla Research Initiative</a>
-    <a class="nav__back" href="index.html">← Back to site</a>
-  </div>
+<!-- Nav -->
+<nav>
+  <a class="nav-brand" href="/">Atolla <span>Research</span></a>
+  <a class="nav-back" href="/">← Back to site</a>
 </nav>
 
-<!-- PAGE HEADER -->
-<div class="page-header">
-  <div class="page-header__inner">
-    <div>
-      <span class="page-header__label">Legal</span>
-      <h1>Privacy Policy</h1>
-    </div>
-    <div class="page-header__meta">Atolla Research Initiative &nbsp;&middot;&nbsp; Last updated: June 2026</div>
-  </div>
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-label">Legal</div>
+  <h1>Privacy Policy</h1>
+  <p class="hero-meta">Atolla Research Initiative &nbsp;·&nbsp; Last updated: June 2026</p>
 </div>
 
-<!-- BODY -->
-<div class="outer">
+<!-- Body -->
+<div class="container">
   <div class="layout">
 
     <!-- Table of contents -->
@@ -440,8 +320,8 @@
 
       <!-- Intro -->
       <section id="intro">
-        <p>This Privacy Policy explains how <strong>Atolla Research Initiative</strong>, operated by SJR LLC ("Atolla", "we", "us", or "our"), collects, uses, and protects information when you visit <strong>atolla.bio</strong> or interact with us.</p>
-        <p>We collect the minimum data necessary to operate this site. We do not sell your data. We do not share it with advertisers. This policy is written in plain English — if something is unclear, <a href="#contact" class="inline-link">contact us</a>.</p>
+        <p>This Privacy Policy explains how <strong>Atolla Research Initiative</strong>, operated by Rowley Marine LLC ("Atolla", "we", "us", or "our"), collects, uses, and protects information when you visit <strong>atolla.bio</strong> or interact with us.</p>
+        <p>We collect the minimum data necessary to operate this site. We do not sell your data. We do not share it with advertisers. This policy is written in plain English — if something is unclear, <a href="#contact">contact us</a>.</p>
         <div class="callout">
           <strong>Our baseline:</strong> If you only browse this website and do not submit any form, we do not collect any personally identifiable information about you.
         </div>
@@ -451,12 +331,12 @@
       <section id="who-we-are">
         <div class="section-num">01</div>
         <h2>Who We Are</h2>
-        <p><strong>Atolla Research Initiative</strong> is a mesophotic reef science and data programme operated by SJR LLC, led by Dr Sonia J Rowley. Our research focuses on coral ecosystems at depths of 30–181 metres across the Indo-Pacific.</p>
+        <p><strong>Atolla Research Initiative</strong> is a mesophotic reef science and data programme operated by Rowley Marine LLC, led by Dr Sonia J Rowley. Our research focuses on coral ecosystems at depths of 30–200 metres across the Indo-Pacific.</p>
         <p>For the purposes of data protection law, the data controller is:</p>
         <div class="contact-block">
-          <p><strong>SJR LLC / Atolla Research Initiative</strong></p>
-          <p>Email: <a class="inline-link" href="mailto:privacy@atolla.bio">privacy@atolla.bio</a></p>
-          <p>Website: <a class="inline-link" href="https://atolla.bio">atolla.bio</a></p>
+          <p><strong>Rowley Marine LLC / Atolla Research Initiative</strong></p>
+          <p>Email: <a href="mailto:privacy@atolla.bio">privacy@atolla.bio</a></p>
+          <p>Website: <a href="https://atolla.bio">atolla.bio</a></p>
         </div>
       </section>
 
@@ -554,7 +434,7 @@
         <ul>
           <li><strong>Service providers:</strong> We use third-party tools to operate the site and send newsletters (for example, an email service provider). These providers are contractually restricted from using your data for any purpose other than providing their service to us.</li>
           <li><strong>Legal requirements:</strong> We may disclose your data if required to do so by law, court order, or to protect the rights and safety of Atolla, its team, or the public.</li>
-          <li><strong>Business transfer:</strong> If Atolla Research Initiative or SJR LLC is transferred or restructured, your data may be transferred as part of that transaction. You will be notified in advance if this occurs.</li>
+          <li><strong>Business transfer:</strong> If Atolla Research Initiative or Rowley Marine LLC is transferred or restructured, your data may be transferred as part of that transaction. You will be notified in advance if this occurs.</li>
         </ul>
         <p>In all other cases, we ask for your explicit consent before sharing.</p>
       </section>
@@ -603,7 +483,7 @@
         </div>
 
         <h3>How to control cookies</h3>
-        <p>You can set your browser to refuse all or some cookies, or to alert you when websites set or access cookies. If you disable or refuse certain cookies, some parts of this site may become inaccessible or not function properly. For more information about cookies, visit <a class="inline-link" href="https://www.allaboutcookies.org" target="_blank" rel="noopener">allaboutcookies.org</a>.</p>
+        <p>You can set your browser to refuse all or some cookies, or to alert you when websites set or access cookies. If you disable or refuse certain cookies, some parts of this site may become inaccessible or not function properly. For more information about cookies, visit <a href="https://www.allaboutcookies.org" target="_blank" rel="noopener">allaboutcookies.org</a>.</p>
       </section>
 
       <!-- 8. Your rights -->
@@ -637,11 +517,11 @@
             <p>Unsubscribe or revoke consent at any time, no questions asked.</p>
           </div>
         </div>
-        <p>To exercise any of these rights, email us at <a class="inline-link" href="mailto:privacy@atolla.bio">privacy@atolla.bio</a>. We will respond within 30 days. We will never charge a fee for a legitimate request.</p>
+        <p>To exercise any of these rights, email us at <a href="mailto:privacy@atolla.bio">privacy@atolla.bio</a>. We will respond within 30 days. We will never charge a fee for a legitimate request.</p>
         <p>If you are in the EEA or UK and believe we have not handled your data lawfully, you have the right to lodge a complaint with your local data protection authority.</p>
 
         <h3>California residents (CCPA)</h3>
-        <p>If you are a California resident, you have the right to know what personal information we collect, request deletion of your personal information, and opt out of any sale of personal information. We do not sell personal information. To exercise your California rights, contact us at <a class="inline-link" href="mailto:privacy@atolla.bio">privacy@atolla.bio</a>.</p>
+        <p>If you are a California resident, you have the right to know what personal information we collect, request deletion of your personal information, and opt out of any sale of personal information. We do not sell personal information. To exercise your California rights, contact us at <a href="mailto:privacy@atolla.bio">privacy@atolla.bio</a>.</p>
       </section>
 
       <!-- 9. Children -->
@@ -665,9 +545,9 @@
         <h2>Contact Us</h2>
         <p>For any privacy-related question, request, or complaint, please reach out:</p>
         <div class="contact-block">
-          <p><strong>Atolla Research Initiative / SJR LLC</strong></p>
-          <p>Email: <a class="inline-link" href="mailto:privacy@atolla.bio">privacy@atolla.bio</a></p>
-          <p>Website: <a class="inline-link" href="https://atolla.bio">atolla.bio</a></p>
+          <p><strong>Atolla Research Initiative / Rowley Marine LLC</strong></p>
+          <p>Email: <a href="mailto:privacy@atolla.bio">privacy@atolla.bio</a></p>
+          <p>Website: <a href="https://atolla.bio">atolla.bio</a></p>
           <p style="margin-top:0.8rem; font-size:0.85rem;">We aim to respond to all privacy requests within 5 business days, and within 30 days at the latest.</p>
         </div>
       </section>
@@ -676,19 +556,12 @@
   </div>
 </div>
 
-<!-- FOOTER -->
+<!-- Footer -->
 <footer>
-  <div class="footer__inner">
-    <div class="footer__logo">Atolla Research Initiative</div>
-    <div class="footer__links">
-      <a href="index.html">Home</a>
-      <a href="get-involved.html">Get Involved</a>
-      <a href="data.html">The Data</a>
-      <a href="contact.html">Contact</a>
-      <a href="privacy.html">Privacy</a>
-    </div>
-    <div class="footer__copy">&copy; 2026 &nbsp;&middot;&nbsp; Founded in San Francisco</div>
-  </div>
+  <p>&copy; 2026 Rowley Marine LLC / Atolla Research Initiative &nbsp;·&nbsp;
+    <a href="/privacy">Privacy Policy</a> &nbsp;·&nbsp;
+    <a href="/">Home</a>
+  </p>
 </footer>
 
 </body>

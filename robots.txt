@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# Block nothing — this is a public site that needs full indexing.
+
+Sitemap: https://atolla.bio/sitemap.xml
