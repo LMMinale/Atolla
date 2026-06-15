@@ -6,13 +6,13 @@
   <title>Get Involved | Fund Mesophotic Reef Research — Atolla Initiative</title>
   <meta name="description" content="Support mesophotic reef research: fund expedition dive days, partner with the Atolla Research Initiative, or join the citizen-science programme led by Dr Sonia J Rowley." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
-  <link rel="canonical" href="https://atolla.bio/get-involved.html" />
+  <link rel="canonical" href="https://atolla.bio/get-involved" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Atolla Research Initiative" />
   <meta property="og:title" content="Get Involved — Fund Mesophotic Reef Research" />
   <meta property="og:description" content="Fund a dive day, partner with us, or join the citizen-science programme supporting mesophotic reef research across the Indo-Pacific." />
-  <meta property="og:url" content="https://atolla.bio/get-involved.html" />
+  <meta property="og:url" content="https://atolla.bio/get-involved" />
   <meta property="og:image" content="https://atolla.bio/images/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -569,33 +569,42 @@
       .section { padding: 4.5rem 0; }
       .hero__text { width: 100%; }
     }
+  
+    /* ── Accessibility: skip link + visible keyboard focus ── */
+    .skip-link { position:absolute; left:-9999px; top:0; z-index:3000;
+      background:#0e7c7b; color:#ffffff; padding:10px 16px;
+      font-family:'Barlow',sans-serif; font-size:0.85rem; font-weight:500; }
+    .skip-link:focus { left:0; }
+    :focus-visible { outline:2px solid #0e7c7b; outline-offset:2px; }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- NAV -->
   <nav class="nav" id="mainNav">
     <div class="nav__inner">
-      <a class="nav__logo" href="index.html">Atolla</a>
+      <a class="nav__logo" href="/">Atolla</a>
       <div class="nav__links">
-        <a href="index.html">Home</a>
-        <a href="get-involved.html">Get Involved</a>
-        <a href="data.html">The Data</a>
-        <a href="faq.html">FAQ</a>
-        <a href="contact.html">Contact</a>
+        <a href="/">Home</a>
+        <a href="/get-involved">Get Involved</a>
+        <a href="/data">The Data</a>
+        <a href="/faq">FAQ</a>
+        <a href="/contact">Contact</a>
       </div>
       <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
+  <span id="main" tabindex="-1"></span>
 
   <div class="nav__mobile" id="mobileMenu">
-    <a href="index.html">Home</a>
-    <a href="get-involved.html">Get Involved</a>
-    <a href="data.html">The Data</a>
-    <a href="faq.html">FAQ</a>
-    <a href="contact.html">Contact</a>
+    <a href="/">Home</a>
+    <a href="/get-involved">Get Involved</a>
+    <a href="/data">The Data</a>
+    <a href="/faq">FAQ</a>
+    <a href="/contact">Contact</a>
   </div>
 
   <!-- HERO -->
@@ -607,7 +616,7 @@
         <p class="hero__subline">Dr Sonia J Rowley &middot; Mesophotic Research Initiative &middot; 2024&ndash;2026</p>
         <div class="hero__btns">
           <a href="#expedition" class="btn btn--teal">The Expedition</a>
-          <a href="contact.html" class="btn btn--outline-white">Contact Us</a>
+          <a href="/contact" class="btn btn--outline-white">Contact Us</a>
         </div>
       </div>
     </div>
@@ -727,14 +736,14 @@
           <div class="way-col__number">01</div>
           <div class="way-col__title">Fund a Dive</div>
           <p class="way-col__desc">Each expedition dive day carries real costs in equipment, logistics, and crew. Contributions of any size directly extend the number of survey days we can complete in 2026. Supporters receive field dispatches and early access to findings.</p>
-          <a href="contact.html" class="way-col__link">Support the expedition &rarr;</a>
+          <a href="/contact" class="way-col__link">Support the expedition &rarr;</a>
         </div>
 
         <div class="way-col">
           <div class="way-col__number">02</div>
           <div class="way-col__title">Research Partnership</div>
           <p class="way-col__desc">Institutions and companies working in marine science, climate research, or ocean technology are invited to join as formal research partners. Partnerships include co-authorship opportunities and access to the full expedition dataset.</p>
-          <a href="contact.html" class="way-col__link">Partner with us &rarr;</a>
+          <a href="/contact" class="way-col__link">Partner with us &rarr;</a>
         </div>
 
       </div>
@@ -746,11 +755,11 @@
     <div class="footer__inner">
       <div class="footer__logo">Atolla Research Initiative</div>
       <div class="footer__links">
-        <a href="index.html">Home</a>
-        <a href="data.html">The Data</a>
-        <a href="contact.html">Contact</a>
-        <a href="faq.html">FAQ</a>
-        <a href="privacy.html">Privacy</a>
+        <a href="/">Home</a>
+        <a href="/data">The Data</a>
+        <a href="/contact">Contact</a>
+        <a href="/faq">FAQ</a>
+        <a href="/privacy">Privacy</a>
       </div>
       <div class="footer__copy">&copy; 2026 &nbsp;&middot;&nbsp; Founded in San Francisco</div>
     </div>
@@ -773,10 +782,4 @@
       link.addEventListener('click', () => {
         mobileMenu.classList.remove('open');
         hamburger.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
-      });
-    });
-  </script>
-
-</body>
-</html>
+        

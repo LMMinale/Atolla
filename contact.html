@@ -6,13 +6,13 @@
   <title>Contact | Atolla Research Initiative — Mesophotic Reef Research</title>
   <meta name="description" content="Contact the Atolla Research Initiative for research collaboration, media enquiries, citizen science, or to support mesophotic reef and gorgonian coral research." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
-  <link rel="canonical" href="https://atolla.bio/contact.html" />
+  <link rel="canonical" href="https://atolla.bio/contact" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Atolla Research Initiative" />
   <meta property="og:title" content="Contact the Atolla Research Initiative" />
   <meta property="og:description" content="Get in touch for research collaboration, media, citizen science, or to support mesophotic reef research." />
-  <meta property="og:url" content="https://atolla.bio/contact.html" />
+  <meta property="og:url" content="https://atolla.bio/contact" />
   <meta property="og:image" content="https://atolla.bio/images/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -525,33 +525,42 @@
       .social-link:nth-child(2n) { border-right: none; }
       .social-link:nth-child(n+3) { border-top: 1px solid #000; }
     }
+  
+    /* ── Accessibility: skip link + visible keyboard focus ── */
+    .skip-link { position:absolute; left:-9999px; top:0; z-index:3000;
+      background:#0e7c7b; color:#ffffff; padding:10px 16px;
+      font-family:'Barlow',sans-serif; font-size:0.85rem; font-weight:500; }
+    .skip-link:focus { left:0; }
+    :focus-visible { outline:2px solid #0e7c7b; outline-offset:2px; }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- NAV -->
   <nav class="nav" id="mainNav">
     <div class="nav__inner">
-      <a class="nav__logo" href="index.html">Atolla</a>
+      <a class="nav__logo" href="/">Atolla</a>
       <div class="nav__links">
-        <a href="index.html">Home</a>
-        <a href="get-involved.html">Get Involved</a>
-        <a href="data.html">The Data</a>
-        <a href="faq.html">FAQ</a>
-        <a href="contact.html" class="active">Contact</a>
+        <a href="/">Home</a>
+        <a href="/get-involved">Get Involved</a>
+        <a href="/data">The Data</a>
+        <a href="/faq">FAQ</a>
+        <a href="/contact" class="active">Contact</a>
       </div>
       <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
+  <span id="main" tabindex="-1"></span>
 
   <div class="nav__mobile" id="mobileMenu">
-    <a href="index.html">Home</a>
-    <a href="get-involved.html">Get Involved</a>
-    <a href="data.html">The Data</a>
-    <a href="faq.html">FAQ</a>
-    <a href="contact.html">Contact</a>
+    <a href="/">Home</a>
+    <a href="/get-involved">Get Involved</a>
+    <a href="/data">The Data</a>
+    <a href="/faq">FAQ</a>
+    <a href="/contact">Contact</a>
   </div>
 
   <!-- HERO -->
@@ -662,11 +671,11 @@
     <div class="footer__inner">
       <div class="footer__logo">Atolla Research Initiative</div>
       <div class="footer__links">
-        <a href="index.html">Home</a>
-        <a href="get-involved.html">Get Involved</a>
-        <a href="data.html">The Data</a>
-        <a href="faq.html">FAQ</a>
-        <a href="privacy.html">Privacy</a>
+        <a href="/">Home</a>
+        <a href="/get-involved">Get Involved</a>
+        <a href="/data">The Data</a>
+        <a href="/faq">FAQ</a>
+        <a href="/privacy">Privacy</a>
       </div>
       <div class="footer__copy">&copy; 2026 &nbsp;&middot;&nbsp; Founded in San Francisco</div>
     </div>
@@ -707,9 +716,4 @@
         return;
       }
       this.style.display = 'none';
-      document.getElementById('formConfirm').style.display = 'block';
-    });
-  </script>
-
-</body>
-</html>
+      do

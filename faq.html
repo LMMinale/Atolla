@@ -6,13 +6,13 @@
   <title>FAQ | Mesophotic Reefs, the Data &amp; How to Get Involved — Atolla</title>
   <meta name="description" content="Answers about mesophotic reef research, the Atolla dataset, CCR diving, Dr Sonia J Rowley, and how to fund, partner, or volunteer with the Atolla Research Initiative." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
-  <link rel="canonical" href="https://atolla.bio/faq.html" />
+  <link rel="canonical" href="https://atolla.bio/faq" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Atolla Research Initiative" />
   <meta property="og:title" content="Frequently Asked Questions — Atolla Research Initiative" />
   <meta property="og:description" content="What mesophotic reefs are, what data we collect, and how to fund, partner, or volunteer with the Atolla Research Initiative." />
-  <meta property="og:url" content="https://atolla.bio/faq.html" />
+  <meta property="og:url" content="https://atolla.bio/faq" />
   <meta property="og:image" content="https://atolla.bio/images/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -445,33 +445,42 @@
       .nav__inner { padding: 0 20px; }
       .faq-section { padding: 4rem 0; }
     }
+  
+    /* ── Accessibility: skip link + visible keyboard focus ── */
+    .skip-link { position:absolute; left:-9999px; top:0; z-index:3000;
+      background:#0e7c7b; color:#ffffff; padding:10px 16px;
+      font-family:'Barlow',sans-serif; font-size:0.85rem; font-weight:500; }
+    .skip-link:focus { left:0; }
+    :focus-visible { outline:2px solid #0e7c7b; outline-offset:2px; }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- NAV -->
   <nav class="nav" id="mainNav">
     <div class="nav__inner">
-      <a class="nav__logo" href="index.html">Atolla</a>
+      <a class="nav__logo" href="/">Atolla</a>
       <div class="nav__links">
-        <a href="index.html">Home</a>
-        <a href="get-involved.html">Get Involved</a>
-        <a href="data.html">The Data</a>
-        <a href="faq.html" class="active">FAQ</a>
-        <a href="contact.html">Contact</a>
+        <a href="/">Home</a>
+        <a href="/get-involved">Get Involved</a>
+        <a href="/data">The Data</a>
+        <a href="/faq" class="active">FAQ</a>
+        <a href="/contact">Contact</a>
       </div>
       <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
+  <span id="main" tabindex="-1"></span>
 
   <div class="nav__mobile" id="mobileMenu">
-    <a href="index.html">Home</a>
-    <a href="get-involved.html">Get Involved</a>
-    <a href="data.html">The Data</a>
-    <a href="faq.html">FAQ</a>
-    <a href="contact.html">Contact</a>
+    <a href="/">Home</a>
+    <a href="/get-involved">Get Involved</a>
+    <a href="/data">The Data</a>
+    <a href="/faq">FAQ</a>
+    <a href="/contact">Contact</a>
   </div>
 
   <!-- HERO -->
@@ -485,7 +494,7 @@
   <!-- FAQ -->
   <section class="faq-section">
     <div class="container">
-      <p class="faq-intro">Everything you might want to know about mesophotic reef research, the Atolla dataset, and how to fund, partner with, or join the initiative. Can't find your answer? <a href="contact.html" style="color:#0e7c7b;border-bottom:1px solid #0e7c7b;">Get in touch</a>.</p>
+      <p class="faq-intro">Everything you might want to know about mesophotic reef research, the Atolla dataset, and how to fund, partner with, or join the initiative. Can't find your answer? <a href="/contact" style="color:#0e7c7b;border-bottom:1px solid #0e7c7b;">Get in touch</a>.</p>
 
       <!-- CATEGORY 1: The Science -->
       <div class="faq-cat">
@@ -543,7 +552,7 @@
 
         <details class="faq">
           <summary>What data does the initiative collect?<span class="faq__icon">+</span></summary>
-          <div class="faq__a">The dataset documents mesophotic reef ecosystems from 30 to 181 metres and includes voucher gorgonian specimens, environmental DNA (eDNA) water samples, high-definition underwater video and imagery, standardised dive transects, and oceanographic data such as temperature, salinity and dissolved oxygen. See <a href="data.html">The Data</a> for the full breakdown.</div>
+          <div class="faq__a">The dataset documents mesophotic reef ecosystems from 30 to 181 metres and includes voucher gorgonian specimens, environmental DNA (eDNA) water samples, high-definition underwater video and imagery, standardised dive transects, and oceanographic data such as temperature, salinity and dissolved oxygen. See <a href="/data">The Data</a> for the full breakdown.</div>
         </details>
 
         <details class="faq">
@@ -553,7 +562,7 @@
 
         <details class="faq">
           <summary>How can researchers access or cite the data?<span class="faq__icon">+</span></summary>
-          <div class="faq__a">On release, the dataset is available through open repositories with a citable DOI, and eDNA records are submitted to public biodiversity databases. For collaboration, co-authorship, or early access ahead of release, <a href="contact.html">contact the team</a>.</div>
+          <div class="faq__a">On release, the dataset is available through open repositories with a citable DOI, and eDNA records are submitted to public biodiversity databases. For collaboration, co-authorship, or early access ahead of release, <a href="/contact">contact the team</a>.</div>
         </details>
       </div>
 
@@ -563,17 +572,17 @@
 
         <details class="faq">
           <summary>How can I support or fund the research?<span class="faq__icon">+</span></summary>
-          <div class="faq__a">The initiative is independently funded, so contributions directly extend the number of survey days completed each season. You can fund a dive day, become a research partner, or support the open-data programme — supporters receive field dispatches and early access to findings. Start on the <a href="get-involved.html">Get Involved</a> page.</div>
+          <div class="faq__a">The initiative is independently funded, so contributions directly extend the number of survey days completed each season. You can fund a dive day, become a research partner, or support the open-data programme — supporters receive field dispatches and early access to findings. Start on the <a href="/get-involved">Get Involved</a> page.</div>
         </details>
 
         <details class="faq">
           <summary>Can I join an expedition or volunteer?<span class="faq__icon">+</span></summary>
-          <div class="faq__a">Yes. There are ways to support expeditions and to take part in the citizen-science programme, which helps classify species and footage from dives. <a href="contact.html">Get in touch</a> and we'll find the right fit.</div>
+          <div class="faq__a">Yes. There are ways to support expeditions and to take part in the citizen-science programme, which helps classify species and footage from dives. <a href="/contact">Get in touch</a> and we'll find the right fit.</div>
         </details>
 
         <details class="faq">
           <summary>How can institutions or companies partner?<span class="faq__icon">+</span></summary>
-          <div class="faq__a">Institutions and companies working in marine science, climate research, or ocean technology are invited to join as formal research partners. Partnerships can include co-authorship and access to the full expedition dataset. Reach out through the <a href="contact.html">Contact</a> page.</div>
+          <div class="faq__a">Institutions and companies working in marine science, climate research, or ocean technology are invited to join as formal research partners. Partnerships can include co-authorship and access to the full expedition dataset. Reach out through the <a href="/contact">Contact</a> page.</div>
         </details>
 
         <details class="faq">
@@ -605,12 +614,12 @@
     <div class="footer__inner">
       <div class="footer__logo">Atolla Research Initiative</div>
       <div class="footer__links">
-        <a href="index.html">Home</a>
-        <a href="get-involved.html">Get Involved</a>
-        <a href="data.html">The Data</a>
-        <a href="faq.html">FAQ</a>
-        <a href="contact.html">Contact</a>
-        <a href="privacy.html">Privacy</a>
+        <a href="/">Home</a>
+        <a href="/get-involved">Get Involved</a>
+        <a href="/data">The Data</a>
+        <a href="/faq">FAQ</a>
+        <a href="/contact">Contact</a>
+        <a href="/privacy">Privacy</a>
       </div>
       <div class="footer__copy">&copy; 2026 &nbsp;&middot;&nbsp; Founded in San Francisco</div>
     </div>

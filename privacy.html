@@ -6,7 +6,7 @@
   <title>Privacy Policy — Atolla Research Initiative</title>
   <meta name="description" content="Privacy policy for the Atolla Research Initiative, a mesophotic reef science and data programme led by Dr Sonia J Rowley." />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://atolla.bio/privacy.html" />
+  <link rel="canonical" href="https://atolla.bio/privacy" />
   <link rel="icon" href="/images/favicon.png" type="image/png" />
   <meta name="theme-color" content="#0a1a2f" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -392,17 +392,26 @@
       .page-header__inner { padding: 3rem 20px 2.5rem; }
       .footer__inner { padding: 0 20px; }
     }
+  
+    /* ── Accessibility: skip link + visible keyboard focus ── */
+    .skip-link { position:absolute; left:-9999px; top:0; z-index:3000;
+      background:#0e7c7b; color:#ffffff; padding:10px 16px;
+      font-family:'Barlow',sans-serif; font-size:0.85rem; font-weight:500; }
+    .skip-link:focus { left:0; }
+    :focus-visible { outline:2px solid #0e7c7b; outline-offset:2px; }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- NAV -->
 <nav class="nav">
   <div class="nav__inner">
-    <a class="nav__logo" href="index.html">Atolla Research Initiative</a>
-    <a class="nav__back" href="index.html">← Back to site</a>
+    <a class="nav__logo" href="/">Atolla Research Initiative</a>
+    <a class="nav__back" href="/">← Back to site</a>
   </div>
 </nav>
+  <span id="main" tabindex="-1"></span>
 
 <!-- PAGE HEADER -->
 <div class="page-header">
@@ -681,11 +690,11 @@
   <div class="footer__inner">
     <div class="footer__logo">Atolla Research Initiative</div>
     <div class="footer__links">
-      <a href="index.html">Home</a>
-      <a href="get-involved.html">Get Involved</a>
-      <a href="data.html">The Data</a>
-      <a href="contact.html">Contact</a>
-      <a href="privacy.html">Privacy</a>
+      <a href="/">Home</a>
+      <a href="/get-involved">Get Involved</a>
+      <a href="/data">The Data</a>
+      <a href="/contact">Contact</a>
+      <a href="/privacy">Privacy</a>
     </div>
     <div class="footer__copy">&copy; 2026 &nbsp;&middot;&nbsp; Founded in San Francisco</div>
   </div>
@@ -693,3 +702,4 @@
 
 </body>
 </html>
+  

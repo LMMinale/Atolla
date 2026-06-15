@@ -1,0 +1,56 @@
+/* Atolla self-hosted fonts — replaces the Google Fonts @import.
+   This keeps visitor IP addresses from being sent to Google (a GDPR concern).
+   Run fetch-fonts.sh (see README.md) to download the .woff2 files into this folder. */
+
+/* ── Archivo Narrow (headings) ── */
+@font-face {
+  font-family: 'Archivo Narrow';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/ArchivoNarrow-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Archivo Narrow';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/ArchivoNarrow-Medium.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Archivo Narrow';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/ArchivoNarrow-SemiBold.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Archivo Narrow';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/ArchivoNarrow-Bold.woff2') format('woff2');
+}
+
+/* ── Barlow (body) ── */
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/fonts/Barlow-Light.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/Barlow-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/Barlow-Medium.woff2') format('woff2');
+}

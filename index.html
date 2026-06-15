@@ -797,33 +797,42 @@
       .hero__text { width: 100%; }
       .about__stats { grid-template-columns: 1fr 1fr; }
     }
+  
+    /* ── Accessibility: skip link + visible keyboard focus ── */
+    .skip-link { position:absolute; left:-9999px; top:0; z-index:3000;
+      background:#0e7c7b; color:#ffffff; padding:10px 16px;
+      font-family:'Barlow',sans-serif; font-size:0.85rem; font-weight:500; }
+    .skip-link:focus { left:0; }
+    :focus-visible { outline:2px solid #0e7c7b; outline-offset:2px; }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- NAV -->
   <nav class="nav" id="mainNav">
     <div class="nav__inner">
-      <a class="nav__logo" href="index.html">Atolla</a>
+      <a class="nav__logo" href="/">Atolla</a>
       <div class="nav__links">
-        <a href="index.html">Home</a>
-        <a href="get-involved.html">Get Involved</a>
-        <a href="data.html">The Data</a>
-        <a href="faq.html">FAQ</a>
-        <a href="contact.html">Contact</a>
+        <a href="/">Home</a>
+        <a href="/get-involved">Get Involved</a>
+        <a href="/data">The Data</a>
+        <a href="/faq">FAQ</a>
+        <a href="/contact">Contact</a>
       </div>
       <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
+  <span id="main" tabindex="-1"></span>
 
   <div class="nav__mobile" id="mobileMenu">
-    <a href="index.html">Home</a>
-    <a href="get-involved.html">Get Involved</a>
-    <a href="data.html">The Data</a>
-    <a href="faq.html">FAQ</a>
-    <a href="contact.html">Contact</a>
+    <a href="/">Home</a>
+    <a href="/get-involved">Get Involved</a>
+    <a href="/data">The Data</a>
+    <a href="/faq">FAQ</a>
+    <a href="/contact">Contact</a>
   </div>
 
   <!-- HERO -->
@@ -834,8 +843,8 @@
         <h1 class="hero__h1">Atolla<br>Research<br>Initiative</h1>
         <p class="hero__subline">Mesophotic Reefs &middot; Gorgonian Corals &middot; CCR Diving &middot; New Species</p>
         <div class="hero__btns">
-          <a href="get-involved.html" class="btn btn--teal">Get Involved</a>
-          <a href="data.html" class="btn btn--outline-white">The Data</a>
+          <a href="/get-involved" class="btn btn--teal">Get Involved</a>
+          <a href="/data" class="btn btn--outline-white">The Data</a>
         </div>
       </div>
     </div>
@@ -862,7 +871,7 @@
               <span class="tag">CCR Diving</span>
               <span class="tag">Pacific</span>
             </div>
-            <a href="get-involved.html" class="exp-tab__link">Sign Up &rarr;</a>
+            <a href="/get-involved" class="exp-tab__link">Sign Up &rarr;</a>
           </div>
         </div>
 
@@ -879,7 +888,7 @@
               <span class="tag">Specimens</span>
               <span class="tag">CCR Diving</span>
             </div>
-            <a href="get-involved.html" class="exp-tab__link">Sign Up &rarr;</a>
+            <a href="/get-involved" class="exp-tab__link">Sign Up &rarr;</a>
           </div>
         </div>
 
@@ -1072,12 +1081,12 @@
     <div class="footer__inner">
       <div class="footer__logo">Atolla Research Initiative</div>
       <div class="footer__links">
-        <a href="index.html">Home</a>
-        <a href="get-involved.html">Get Involved</a>
-        <a href="data.html">The Data</a>
-        <a href="contact.html">Contact</a>
-        <a href="faq.html">FAQ</a>
-        <a href="privacy.html">Privacy</a>
+        <a href="/">Home</a>
+        <a href="/get-involved">Get Involved</a>
+        <a href="/data">The Data</a>
+        <a href="/contact">Contact</a>
+        <a href="/faq">FAQ</a>
+        <a href="/privacy">Privacy</a>
       </div>
       <div class="footer__copy">&copy; 2026 &nbsp;&middot;&nbsp; Founded in San Francisco</div>
     </div>
@@ -1182,7 +1191,7 @@
     opacity:0;pointer-events:none;transition:opacity 0.35s;
   "></div>
 
-  <div id="nlPopup" style="
+  <div id="nlPopup" role="dialog" aria-modal="true" aria-label="Newsletter signup" style="
     position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.97);
     z-index:2001;width:min(860px,92vw);display:grid;
     grid-template-columns:1fr 1fr;
@@ -1214,8 +1223,8 @@
 
       <form id="nlPopupForm" novalidate>
         <div style="display:flex;gap:0;margin-bottom:0.75rem;">
-          <input type="email" placeholder="Your email address" autocomplete="email" required
-            style="flex:1;font-family:'Barlow',sans-serif;font-size:0.88rem;color:#000000;background:#ffffff;border:1px solid #000000;border-right:none;padding:0.75rem 1rem;outline:none;">
+          <input type="email" placeholder="Your email address" autocomplete="email" required aria-label="Email address"
+            style="flex:1;font-family:'Barlow',sans-serif;font-size:0.88rem;color:#000000;background:#ffffff;border:1px solid #000000;border-right:none;padding:0.75rem 1rem;">
           <button type="submit" style="
             font-family:'Barlow',sans-serif;font-size:0.78rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;
             background:#000000;color:#ffffff;border:1px solid #000000;padding:0.75rem 1.2rem;cursor:pointer;white-space:nowrap;transition:background 0.2s;
@@ -1236,11 +1245,4 @@
     #nlPopup.nlp--visible {
       transform: translate(-50%, -50%) scale(1);
     }
-    @media (max-width: 600px) {
-      #nlPopup { grid-template-columns: 1fr !important; }
-      #nlPopup > div:first-child { min-height: 180px !important; }
-    }
-  </style>
-
-</body>
-</html>
+    @media (max-

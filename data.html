@@ -6,13 +6,13 @@
   <title>The Data | Mesophotic Reef Dataset 30–181m — Atolla Initiative</title>
   <meta name="description" content="Open mesophotic reef dataset: 312 gorgonian specimens, eDNA, video and dive transects from 30–181m across the Indo-Pacific, released under CC BY 4.0." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
-  <link rel="canonical" href="https://atolla.bio/data.html" />
+  <link rel="canonical" href="https://atolla.bio/data" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Atolla Research Initiative" />
   <meta property="og:title" content="The Data — Mesophotic Reef Dataset (30–181m)" />
   <meta property="og:description" content="312 gorgonian specimens, eDNA samples, 2,840 images and 94 dive transects from mesophotic reefs across the Indo-Pacific. Open access, CC BY 4.0." />
-  <meta property="og:url" content="https://atolla.bio/data.html" />
+  <meta property="og:url" content="https://atolla.bio/data" />
   <meta property="og:image" content="https://atolla.bio/images/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -32,7 +32,7 @@
     "@type": "Dataset",
     "name": "Atolla Mesophotic Reef Dataset (2024–2026)",
     "description": "Field dataset documenting mesophotic reef ecosystems and gorgonian octocoral communities across the Indo-Pacific at depths of 30–181m. Includes 312 voucher specimens, 480 eDNA water samples, 2,840 images and clips, 94 dive transects, and 18 oceanographic dive logs collected via closed-circuit rebreather (CCR) diving.",
-    "url": "https://atolla.bio/data.html",
+    "url": "https://atolla.bio/data",
     "keywords": [
       "mesophotic coral ecosystems",
       "gorgonian octocoral",
@@ -669,33 +669,42 @@
       .hero__text { width: 100%; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
     }
+  
+    /* ── Accessibility: skip link + visible keyboard focus ── */
+    .skip-link { position:absolute; left:-9999px; top:0; z-index:3000;
+      background:#0e7c7b; color:#ffffff; padding:10px 16px;
+      font-family:'Barlow',sans-serif; font-size:0.85rem; font-weight:500; }
+    .skip-link:focus { left:0; }
+    :focus-visible { outline:2px solid #0e7c7b; outline-offset:2px; }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- NAV -->
   <nav class="nav" id="mainNav">
     <div class="nav__inner">
-      <a class="nav__logo" href="index.html">Atolla</a>
+      <a class="nav__logo" href="/">Atolla</a>
       <div class="nav__links">
-        <a href="index.html">Home</a>
-        <a href="get-involved.html">Get Involved</a>
-        <a href="data.html">The Data</a>
-        <a href="faq.html">FAQ</a>
-        <a href="contact.html">Contact</a>
+        <a href="/">Home</a>
+        <a href="/get-involved">Get Involved</a>
+        <a href="/data">The Data</a>
+        <a href="/faq">FAQ</a>
+        <a href="/contact">Contact</a>
       </div>
       <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
+  <span id="main" tabindex="-1"></span>
 
   <div class="nav__mobile" id="mobileMenu">
-    <a href="index.html">Home</a>
-    <a href="get-involved.html">Get Involved</a>
-    <a href="data.html">The Data</a>
-    <a href="faq.html">FAQ</a>
-    <a href="contact.html">Contact</a>
+    <a href="/">Home</a>
+    <a href="/get-involved">Get Involved</a>
+    <a href="/data">The Data</a>
+    <a href="/faq">FAQ</a>
+    <a href="/contact">Contact</a>
   </div>
 
   <!-- HERO -->
@@ -706,7 +715,7 @@
         <h1 class="hero__h1">The<br>Data</h1>
         <p class="hero__subline">312 Specimens &middot; 181m Depth &middot; CCR Diving &middot; New Species</p>
         <div class="hero__btns">
-          <a href="contact.html" class="btn btn--teal">Get in Touch</a>
+          <a href="/contact" class="btn btn--teal">Get in Touch</a>
           <a href="#categories" class="btn btn--outline-white">Browse Data</a>
         </div>
       </div>
@@ -959,11 +968,11 @@
     <div class="footer__inner">
       <div class="footer__logo">Atolla Research Initiative</div>
       <div class="footer__links">
-        <a href="index.html">Home</a>
-        <a href="get-involved.html">Get Involved</a>
-        <a href="contact.html">Contact</a>
-        <a href="faq.html">FAQ</a>
-        <a href="privacy.html">Privacy</a>
+        <a href="/">Home</a>
+        <a href="/get-involved">Get Involved</a>
+        <a href="/contact">Contact</a>
+        <a href="/faq">FAQ</a>
+        <a href="/privacy">Privacy</a>
       </div>
       <div class="footer__copy">&copy; 2026 &nbsp;&middot;&nbsp; Founded in San Francisco</div>
     </div>
@@ -995,10 +1004,4 @@
         const target = btn.dataset.ctab;
         document.querySelectorAll('.ctab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
         btn.classList.add('active'); btn.setAttribute('aria-selected', 'true');
-        document.querySelectorAll('.ctab-panel').forEach(p => p.classList.toggle('active', p.dataset.ctabPanel === target));
-      });
-    });
-  </script>
-
-</body>
-</html>
+        document.querySelectorAll('.ctab-panel').forEach(p => p.classLi
